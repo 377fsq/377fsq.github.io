@@ -1,0 +1,555 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MAE与之前的Transformer有什么区别？Transformer Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空 ViT MAE：可以看作是一个将Bert拓展到CV 一、标题 auto指的是“自”的意思，标号是图片自己本身 scalable：规模大（efficient来形容速度快）  二、摘要“we develop an asymmetric encoder-decoder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MAE">
+<meta property="og:url" content="http://example.com/2022/04/11/MAE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MAE与之前的Transformer有什么区别？Transformer Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空 ViT MAE：可以看作是一个将Bert拓展到CV 一、标题 auto指的是“自”的意思，标号是图片自己本身 scalable：规模大（efficient来形容速度快）  二、摘要“we develop an asymmetric encoder-decoder">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181112127.png">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181141648.png">
+<meta property="article:published_time" content="2022-04-11T10:03:03.000Z">
+<meta property="article:modified_time" content="2022-04-11T11:01:44.287Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Transformer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png">
+  
+  
+  <title>MAE - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>琦琦怪怪🎈</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MAE">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-11 18:03" pubdate>
+        2022年4月11日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MAE</h1>
+            
+            <div class="markdown-body">
+              <h1 id="MAE"><a href="#MAE" class="headerlink" title="MAE"></a>MAE</h1><h2 id="与之前的Transformer有什么区别？"><a href="#与之前的Transformer有什么区别？" class="headerlink" title="与之前的Transformer有什么区别？"></a>与之前的Transformer有什么区别？</h2><p>Transformer</p>
+<p>Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空</p>
+<p>ViT</p>
+<p>MAE：可以看作是一个将Bert拓展到CV</p>
+<h2 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h2><ul>
+<li>auto指的是“自”的意思，标号是图片自己本身</li>
+<li>scalable：规模大（efficient来形容速度快）</li>
+</ul>
+<h2 id="二、摘要"><a href="#二、摘要" class="headerlink" title="二、摘要"></a>二、摘要</h2><p>“we develop an asymmetric encoder-decoder architecture, with an encoder that operates only on the visible subset of patches (without mask tokens), along with a lightweight decoder that reconstructs the original image from the latent representation and mask tokens. Second, we find that masking a high proportion of the input image, e.g., 75%, yields a nontrivial and meaningful self-supervisory task.” (He 等。, 2021, p. 1)</p>
+<ul>
+<li>设计一个非对称的encoder-decoder</li>
+<li>编码器只作用于可见的patch中</li>
+<li>如果遮住了较多部分如75%，那么他会得到一个非显然的而且有意义的自监督的任务</li>
+</ul>
+<p>“Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.” (He 等。, 2021, p. 1)</p>
+<p>该研究主要是用来做迁移学习的。</p>
+<h2 id="三、关键图"><a href="#三、关键图" class="headerlink" title="三、关键图"></a>三、关键图</h2><p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png" srcset="/img/loading.gif" lazyload alt="image-20220411184342734"></p>
+<ul>
+<li>灰色，表示盖住</li>
+<li>没有被盖住的拿出来，放入encoder（ViT）：主要计算量来自于编码器</li>
+<li>得到每一个块对应的特征</li>
+<li>把被盖住的块，重新放回原来的位置（原始图拉成了一个向量）</li>
+<li>输入到解码器decoder</li>
+<li>解码器重构原来的信息</li>
+</ul>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181112127.png" srcset="/img/loading.gif" lazyload alt="image-20220411181112127"></p>
+<p>第一列是打了mask  第二列是重构  第三列是原图</p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181141648.png" srcset="/img/loading.gif" lazyload alt="image-20220411181141648"></p>
+<p>mask不同比例的演示效果</p>
+<h2 id="四、引言"><a href="#四、引言" class="headerlink" title="四、引言"></a>四、引言</h2><p><em>研究问题</em></p>
+<ul>
+<li>是什么让自编码mask在视觉和语言领域效果不同？</li>
+</ul>
+<p><em>对应提出观点</em></p>
+<ol>
+<li>CV通常使用卷积扫来扫去，卷积窗口很难区分边界，最后难还原</li>
+<li>信息的密度有点不一样，图片信息冗余，可能可以通过插值插回来</li>
+<li>在视觉中，解码器仅仅使用一个MLP是不够的</li>
+</ol>
+<p><strong>写作手法</strong></p>
+<p>提问题-回答问题-引导出创新</p>
+<p>以这样的结构是来解释为什么要设计成这个样子的原因讲清楚了</p>
+<h2 id="五、相关工作"><a href="#五、相关工作" class="headerlink" title="五、相关工作"></a>五、相关工作</h2><ul>
+<li>“Masked language modeling”</li>
+<li>“Autoencoding”</li>
+<li>“Masked image encoding”</li>
+<li>“Self-supervised learning”</li>
+</ul>
+<h2 id="六、方法"><a href="#六、方法" class="headerlink" title="六、方法"></a>六、方法</h2><p>干货章节</p>
+<ol>
+<li><p>介绍掩码是怎么工作的</p>
+<p> 只采样少量的块</p>
+</li>
+<li><p>MAE encoder 和ViT 差不多</p>
+<p> 被mask的就不传入了</p>
+</li>
+<li><p>MAE decoder（主要作用做在预训练的时候）</p>
+<p> 其实就是另外一个transformer</p>
+</li>
+<li><p>怎么样重构出原来的像素</p>
+</li>
+<li><p>简单实现</p>
+<ul>
+<li>首先生成token列，做一次线性投影，再加上位置信息</li>
+<li>把这个序列随机打乱一下，把最后一块拿掉（相当于打乱之后保留前面25%，后面的丢掉）【随机采样】</li>
+<li>在解码的时候要在后面附上跟之前长度一样的mask的patches</li>
+<li>重新unshuffle一下</li>
+</ul>
+</li>
+</ol>
+<h2 id="七、实验"><a href="#七、实验" class="headerlink" title="七、实验"></a>七、实验</h2><ol>
+<li><p>ImageNet上的实验</p>
+<p> “with strong regularization” 在之前ViT的论文中说需要一个比较大的数据集才能够得到好的效果，后来研究发现如果加入合适的正则项的话，其实在小一点的数据上也是能训练出来的。</p>
+<ul>
+<li>监督的训练</li>
+<li>有监督的训练</li>
+</ul>
+</li>
+<li><p>各种消融实验（不同超参数）</p>
+</li>
+<li><p>比的是与其他方法比</p>
+</li>
+<li><p>局部微调【高层于自己的任务相关，最好调一调】</p>
+</li>
+</ol>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li><p>简单算法？（主要是针对该领域的研究）</p>
+<p> MAE基于ViT,ViT基于Transformer模型算法不会简单</p>
+</li>
+<li><p>效果可以媲美有标号的工作</p>
+</li>
+<li><p>潜在影响【类似于说GAN】,可能会有不存在的东西出现</p>
+</li>
+</ol>
+<h2 id="个人思考："><a href="#个人思考：" class="headerlink" title="个人思考："></a>个人思考：</h2><p>1、嫁接这个创新点到我们自己的舞台数据集上</p>
+<p>将图片打成patches,因为有关键点标签。可以将关键点所在的patches保留，其他图片块mask掉。</p>
+<p>2、代码没有公布，用的是TensorFlow+TPU，小老百姓难嫁接</p>
+<p>3、随机mask将重要信息mask了，是否应该选择性的mask?</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Transformer/">Transformer</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="lv-container" data-id="city" data-uid="Mi8xLzM=">
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#lv-container', function() {
+        Fluid.utils.createScript('https://cdn-city.livere.com/js/embed.dist.js');
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
