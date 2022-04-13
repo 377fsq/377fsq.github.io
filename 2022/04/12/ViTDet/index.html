@@ -16,25 +16,23 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="MAE与之前的Transformer有什么区别？Transformer Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空 ViT MAE：可以看作是一个将Bert拓展到CV 一、标题 auto指的是“自”的意思，标号是图片自己本身 scalable：规模大（efficient来形容速度快）  二、摘要“we develop an asymmetric encoder-decoder">
+    <meta name="description" content="ViTDet 视觉领域Transformer骨干  一句话总结将普通 ViT 主干预训练为MAE，检测器 ViTDet 可以与之前所有基于分层主干的领先方法竞争，仅使用 ImageNet-1K预训练在 COCO上可达到 61.3 box AP！代码将开源！  MAE是使用类似于BERT的掩码机制，从图片中随机抹去一些像素，并让模型通过已知像素去构建未知像素，从而迫使模型学习图像中的特征。  一、摘">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MAE">
-<meta property="og:url" content="http://example.com/2022/04/11/MAE/index.html">
+<meta property="og:title" content="ViTDet">
+<meta property="og:url" content="http://example.com/2022/04/12/ViTDet/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="MAE与之前的Transformer有什么区别？Transformer Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空 ViT MAE：可以看作是一个将Bert拓展到CV 一、标题 auto指的是“自”的意思，标号是图片自己本身 scalable：规模大（efficient来形容速度快）  二、摘要“we develop an asymmetric encoder-decoder">
+<meta property="og:description" content="ViTDet 视觉领域Transformer骨干  一句话总结将普通 ViT 主干预训练为MAE，检测器 ViTDet 可以与之前所有基于分层主干的领先方法竞争，仅使用 ImageNet-1K预训练在 COCO上可达到 61.3 box AP！代码将开源！  MAE是使用类似于BERT的掩码机制，从图片中随机抹去一些像素，并让模型通过已知像素去构建未知像素，从而迫使模型学习图像中的特征。  一、摘">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181112127.png">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181141648.png">
-<meta property="article:published_time" content="2022-04-11T10:03:03.000Z">
-<meta property="article:modified_time" content="2022-04-11T12:06:13.884Z">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220412143118054.png">
+<meta property="article:published_time" content="2022-04-12T06:29:06.000Z">
+<meta property="article:modified_time" content="2022-04-12T06:49:15.550Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png">
+<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220412143118054.png">
   
   
-  <title>MAE - Hexo</title>
+  <title>ViTDet - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -180,7 +178,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="MAE">
+            <span class="h2" id="subtitle" title="ViTDet">
               
             </span>
 
@@ -190,8 +188,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-11 18:03" pubdate>
-        2022年4月11日 晚上
+      <time datetime="2022-04-12 14:29" pubdate>
+        2022年4月12日 下午
       </time>
     </span>
   
@@ -201,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      3.7k 字
     </span>
   
 
@@ -210,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15 分钟
+      31 分钟
     </span>
   
 
@@ -239,107 +237,130 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">MAE</h1>
+            <h1 style="display: none">ViTDet</h1>
             
             <div class="markdown-body">
-              <h1 id="MAE"><a href="#MAE" class="headerlink" title="MAE"></a>MAE</h1><h2 id="与之前的Transformer有什么区别？"><a href="#与之前的Transformer有什么区别？" class="headerlink" title="与之前的Transformer有什么区别？"></a>与之前的Transformer有什么区别？</h2><p>Transformer</p>
-<p>Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空</p>
-<p>ViT</p>
-<p>MAE：可以看作是一个将Bert拓展到CV</p>
-<h2 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h2><ul>
-<li>auto指的是“自”的意思，标号是图片自己本身</li>
-<li>scalable：规模大（efficient来形容速度快）</li>
-</ul>
-<h2 id="二、摘要"><a href="#二、摘要" class="headerlink" title="二、摘要"></a>二、摘要</h2><p>“we develop an asymmetric encoder-decoder architecture, with an encoder that operates only on the visible subset of patches (without mask tokens), along with a lightweight decoder that reconstructs the original image from the latent representation and mask tokens. Second, we find that masking a high proportion of the input image, e.g., 75%, yields a nontrivial and meaningful self-supervisory task.” (He 等。, 2021, p. 1)</p>
+              <h1 id="ViTDet"><a href="#ViTDet" class="headerlink" title="ViTDet"></a>ViTDet</h1><blockquote>
+<p>视觉领域Transformer骨干</p>
+</blockquote>
+<h2 id="一句话总结"><a href="#一句话总结" class="headerlink" title="一句话总结"></a>一句话总结</h2><p>将普通 ViT 主干预训练为<strong>MAE</strong>，检测器 ViTDet 可以与之前所有基于分层主干的领先方法竞争，仅使用 ImageNet-1K预训练在 COCO上可达到 61.3 box AP！代码将开源！</p>
 <ul>
-<li>设计一个非对称的encoder-decoder</li>
-<li>编码器只作用于可见的patch中</li>
-<li>如果遮住了较多部分如75%，那么他会得到一个非显然的而且有意义的自监督的任务</li>
+<li>MAE是使用类似于BERT的掩码机制，从图片中随机抹去一些像素，并让模型通过已知像素去构建未知像素，从而迫使模型学习图像中的特征。</li>
 </ul>
-<p>“Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.” (He 等。, 2021, p. 1)</p>
-<p>该研究主要是用来做迁移学习的。</p>
-<h2 id="三、关键图"><a href="#三、关键图" class="headerlink" title="三、关键图"></a>三、关键图</h2><p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png" srcset="/img/loading.gif" lazyload alt="image-20220411184342734"></p>
+<h2 id="一、摘要"><a href="#一、摘要" class="headerlink" title="一、摘要"></a>一、摘要</h2><p>“We explore the plain, non-hierarchical Vision Transformer (ViT) as a backbone network for object detection.” (Li 等。, 2022, p. 1)</p>
 <ul>
-<li>灰色，表示盖住</li>
-<li>没有被盖住的拿出来，放入encoder（ViT）：主要计算量来自于编码器</li>
-<li>得到每一个块对应的特征</li>
-<li>把被盖住的块，重新放回原来的位置（原始图拉成了一个向量）</li>
-<li>输入到解码器decoder</li>
-<li>解码器重构原来的信息</li>
+<li>以最普通的，非层级结构的ViT作为Baseline改进。</li>
+<li>基于ViT设计一个针对目标检测任务的通用骨干。</li>
 </ul>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181112127.png" srcset="/img/loading.gif" lazyload alt="image-20220411181112127"></p>
-<p>第一列是打了mask  第二列是重构  第三列是原图</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181141648.png" srcset="/img/loading.gif" lazyload alt="image-20220411181141648"></p>
-<p>mask不同比例的演示效果</p>
-<h2 id="四、引言"><a href="#四、引言" class="headerlink" title="四、引言"></a>四、引言</h2><p><em>研究问题</em></p>
-<ul>
-<li>是什么让自编码mask在视觉和语言领域效果不同？</li>
-</ul>
-<p><em>对应提出观点</em></p>
+<p>本文主要目标是消除骨干网络中的分层结构约束，主要探索一种适用于目标检测的普通骨干网络。</p>
+<h2 id="二、引言"><a href="#二、引言" class="headerlink" title="二、引言"></a>二、引言</h2><ul>
+<li><p>第一段，拆分检测网络结构backbone+neck+head</p>
+<p>  引出问题：</p>
+<p>  “For a long while, these backbones have been multi-scale, hierarchical architectures due to the de facto design of convolutional networks (ConvNet) [31], which has heavily influenced the neck&#x2F;head design for detecting objects at multiple scales (e.g., FPN).” (Li 等。, 2022, p. 1)</p>
+<p>  卷积网络的backbone大多都是<strong>多尺度</strong>设计，这严重影响了neck&#x2F;head的设计</p>
+</li>
+<li><p>第二段，引出“Vision Transformers (ViT)”</p>
+<p>  ViT相对卷积网络的不同（主要是针对第一段问题展开）：原始的ViT是一种普通的、非分层的结构。满足极简架构的需求。</p>
+<p>  引出问题：</p>
+<p>  “How can we address multi-scale objects in a downstream task with a plain backbone from upstream pre-training? Is a plain ViT too inefficient to use with high-resolution detection images?” (Li 等。, 2022, p. 1)</p>
+<p>  如何应对下游任务的多尺寸对象？低效普通的ViT能够检测高分辨率图像？</p>
+<p>  解决办法：将层级设计引入回backbone。</p>
+<p>  相关研究：</p>
+<p>  “Swin Transformers [40] and related works [53,16,32,28]”</p>
+</li>
+<li><p>第三-五段，引出自己的研究内容。</p>
 <ol>
-<li>CV通常使用卷积扫来扫去，卷积窗口很难区分边界，最后难还原</li>
-<li>信息的密度有点不一样，图片信息冗余，可能可以通过插值插回来</li>
-<li>在视觉中，解码器仅仅使用一个MLP是不够的</li>
+<li><p>提出设计:从独立上下游任务考虑，Figure 1右图为作者团队的设计：在最后一个特征图构建一个简单的金字塔neck。</p>
+<p> 惊讶结论①：<strong>从单尺度特征图（没有常见的 FPN 设计）构建一个简单的特征金字塔就足够了；</strong></p>
+<p> 惊讶结论②：<strong>使用窗口注意力（没有移位）就足够了跨窗口传播块</strong></p>
+</li>
+<li><p>效果优越，带有MAE效果更好。</p>
+</li>
+<li><p>展望</p>
+</li>
 </ol>
-<p><strong>写作手法</strong></p>
-<p>提问题-回答问题-引导出创新</p>
-<p>以这样的结构是来解释为什么要设计成这个样子的原因讲清楚了</p>
-<h2 id="五、相关工作"><a href="#五、相关工作" class="headerlink" title="五、相关工作"></a>五、相关工作</h2><ul>
-<li>“Masked language modeling”</li>
-<li>“Autoencoding”</li>
-<li>“Masked image encoding”</li>
-<li>“Self-supervised learning”</li>
+</li>
 </ul>
-<h2 id="六、方法"><a href="#六、方法" class="headerlink" title="六、方法"></a>六、方法</h2><p>干货章节</p>
+<h2 id="三、相关工作"><a href="#三、相关工作" class="headerlink" title="三、相关工作"></a>三、相关工作</h2><ul>
+<li>目标检测骨干网络</li>
+<li>普通骨干网络的检测器</li>
+<li>目标检测方法</li>
+</ul>
+<h2 id="四、方法介绍"><a href="#四、方法介绍" class="headerlink" title="四、方法介绍"></a>四、方法介绍</h2><p><em>研究目标</em>：删除backbone上的分层约束。做最小的微调适用于目标检测任务。</p>
+<ul>
+<li><p>简单的特征金字塔</p>
 <ol>
-<li><p>介绍掩码是怎么工作的</p>
-<p> 只采样少量的块</p>
+<li><p><strong>仅从backbone最后一层的特征图，构建一个简单的特征金字塔</strong></p>
 </li>
-<li><p>MAE encoder 和ViT 差不多</p>
-<p> 被mask的就不传入了</p>
+<li><p>“However, our scenario involves upsampling from a deep, lowresolution feature map, unlike [38], which taps into shallower feature maps. In hierarchical backbones, upsampling is often aided by lateral connection [35]; in plain ViT backbones, we empirically find this is not necessary (Sec. 4) and simple deconvolutions are sufficient.”</p>
+<p> <strong>不需要自上而下的连接</strong></p>
 </li>
-<li><p>MAE decoder（主要作用做在预训练的时候）</p>
-<p> 其实就是另外一个transformer</p>
-</li>
-<li><p>怎么样重构出原来的像素</p>
-</li>
-<li><p>简单实现</p>
+<li><p>比较了两种种FPN变体(a)(b)</p>
+<p> <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220412143118054.png" srcset="/img/loading.gif" lazyload alt="image-20220412143118054"></p>
 <ul>
-<li>首先生成token列，做一次线性投影，再加上位置信息</li>
-<li>把这个序列随机打乱一下，把最后一块拿掉（相当于打乱之后保留前面25%，后面的丢掉）【随机采样】</li>
-<li>在解码的时候要在后面附上跟之前长度一样的mask的patches</li>
-<li>重新unshuffle一下</li>
+<li><ol>
+<li>具体实现-&gt;在最后一个特征图上并行应用一组卷积或反卷积来生成多尺度特征图。具体来说，使用标准的ViT步长stride&#x3D;16，然后利用下采样卷积得到1&#x2F;32,1&#x2F;16的尺度特征图，利用反卷积操作得到1&#x2F;8,1&#x2F;4尺度特征图。</li>
+</ol>
+</li>
 </ul>
 </li>
 </ol>
-<h2 id="七、实验"><a href="#七、实验" class="headerlink" title="七、实验"></a>七、实验</h2><ol>
-<li><p>ImageNet上的实验</p>
-<p> “with strong regularization” 在之前ViT的论文中说需要一个比较大的数据集才能够得到好的效果，后来研究发现如果加入合适的正则项的话，其实在小一点的数据上也是能训练出来的。</p>
-<ul>
-<li>无监督的训练</li>
-<li>有监督的训练</li>
+</li>
+<li><p>骨干网络适应</p>
+<p>  针对问题</p>
+<p>  1、目标检测受益于高分辨率输入图像，但是这个又与在Transformer中全局计算自注意力存在矛盾，因为这样会变得更慢，并且占据很多内存。</p>
+<p>  解决方法</p>
+<p>  “We explore using window attention [52] with a few cross-window blocks. During fine-tuning, given a high-resolution feature map, we divide it into regular non-overlapping windows.5 Self-attention is computed within each window. This is referred to as “restricted ” self-attention in the original Transformer [52].” (Li 等。, 2022, p. 6)</p>
+<p>  本文还采用几个跨窗口的模块来计算Window attention,对于给定高分辨率特征图我们将其划分为常规的非重叠窗口，在每个窗口内计算自注意力。</p>
+<p>  与 Swin 不同，我们不会跨层“移动”窗口。为了允许信息传播，我们使用了极少数（默认情况下，4 个）可以传播的块。我们将预训练的主干网络平均分成 4 个块子集（例如，对于 24 块 ViT-L，每个子集中有 6 个）。我们在每个子集的最后一个块中应用传播策略。</p>
+<ol>
+<li><p>策略一：全局传播</p>
+<p> 在每个子集的最后一个块中执行全局自我注意。由于全局块的数量很少，内存和计算成本是可行的。</p>
+</li>
+<li><p>策略二：卷积传播</p>
+<p> 作为替代方案，我们在每个子集之后添加一个额外的卷积块。卷积块是一个残差块，由一个或多个卷积和一个恒等连接操作组成。该块中的最后一层被初始化为零，因此该块的初始状态是一个标记。将块初始化为身份允许我们将其插入到预训练主干中的任何位置，而不会破坏主干的初始状态。</p>
+</li>
+</ol>
+</li>
+<li><p>实现</p>
+<ol>
+<li>patch size &#x3D; 16*16</li>
+<li>输入尺寸 1024*1024</li>
+<li>AdamW优化器</li>
+</ol>
+</li>
 </ul>
+<h2 id="五、实验"><a href="#五、实验" class="headerlink" title="五、实验"></a>五、实验</h2><p>默认backbone情况是：vit+简单金字塔+全局传播（4个传播块）</p>
+<p>预训练：backbone+MAE无标签在IN-1k上进行预训练</p>
+<h3 id="实验一：证明简单金字塔是有效的"><a href="#实验一：证明简单金字塔是有效的" class="headerlink" title="实验一：证明简单金字塔是有效的"></a>实验一：证明简单金字塔是有效的</h3><p>消融对比试验，baseline是没有金字塔，abc分别对应上面三种图的情况。实验结果表明作者提出的简单金字塔效果最好。</p>
+<h3 id="实验二：证明窗口注意仅需很少的传播块"><a href="#实验二：证明窗口注意仅需很少的传播块" class="headerlink" title="实验二：证明窗口注意仅需很少的传播块"></a>实验二：证明窗口注意仅需很少的传播块</h3><p>backbone适应消融实验</p>
+<p>(a)不同的跨窗口交互策略：无、4个全局传播块、<strong>4个卷积传播块</strong>、移位窗口</p>
+<p>(b)探究了不同类型的卷积块应用于卷积传播【<strong>basic two 3x*3;*</strong> bottleneck 1x1-&gt;3x3-&gt;1x1; naive 一个1x1卷积 】</p>
+<p>(c)探究跨窗口传播应该位于骨干网络的哪个位置。【放在最前面4个块；放在最后4个块；<strong>4个全局传播块均匀的放位置。</strong>】</p>
+<p>(d)探究使用的全局传播的块数</p>
+<h3 id="实验三：“Comparisons-of-plain-vs-hierarchical-backbones”"><a href="#实验三：“Comparisons-of-plain-vs-hierarchical-backbones”" class="headerlink" title="实验三：“Comparisons of plain vs. hierarchical backbones”"></a>实验三：“Comparisons of plain vs. hierarchical backbones”</h3><p>金字塔Backbone对比</p>
+<h3 id="实验四：与其他分层结构的backbone比较"><a href="#实验四：与其他分层结构的backbone比较" class="headerlink" title="实验四：与其他分层结构的backbone比较"></a>实验四：与其他分层结构的backbone比较</h3><h2 id="总结-amp-感悟"><a href="#总结-amp-感悟" class="headerlink" title="总结&amp;感悟"></a>总结&amp;感悟</h2><p>videt还是想解耦预训练和检测</p>
+<ol>
+<li><p>继承了来自<strong>YOLOF</strong>去掉FPN的思考，这次的<strong>ViTDet</strong>选择了直接暴力抹掉<strong>shift window</strong>，一步到位。</p>
 </li>
-<li><p>各种消融实验（不同超参数）</p>
+<li><p>训练空间还是挺夸张的，不适合小老百姓的使用。采用MAE来无监督预训练，所以论文看起来简单，但是也只有大厂能烧的起实验。感觉这更多是一种工程化的探索，以及对于MAE的一次推广吧，所以读一读就可，深入研究的话，可能不一定能够跑得起来。</p>
 </li>
-<li><p>比的是与其他方法比</p>
+<li><p>关于论文，有点不清不楚，怎么分成子集？平行训练？如果要更改结构预训练权重能否迁移？会不会效果不好？</p>
 </li>
-<li><p>局部微调【高层于自己的任务相关，最好调一调】</p>
+<li><p>只能说东一个大致更改的位置，但是对于细节不明不白。。。</p>
+</li>
+<li><p>尚未开源</p>
+</li>
+<li><p>yolof论文证明了FPN多尺度是没有用的。居然没引用。</p>
+</li>
+<li><p>一个证明，拿Swin来做backbone的话，window size的self-attention就够了，没有必要用shift，用一个普通的带shortcut的卷积来代替shift操作就行了。就是attention+convolution效果极好。</p>
+</li>
+<li><p>一个有意思的点：该论文中<code>Window attention + global propagation block</code>的设定和 <code>Transformer in Transformer</code> 的思路是一致的。</p>
+<blockquote>
+<p><strong>Window attention &#x3D;&#x3D; inner transformer</strong><br><strong>global propagation block &#x3D;&#x3D; outer transformer</strong><br><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2103.00112">https://arxiv.org/abs/2103.00112</a></p>
+</blockquote>
 </li>
 </ol>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
-<li><p>简单算法？（主要是针对该领域的研究）</p>
-<p> MAE基于ViT,ViT基于Transformer模型算法不会简单</p>
-</li>
-<li><p>效果可以媲美有标号的工作</p>
-</li>
-<li><p>潜在影响【类似于说GAN】,可能会有不存在的东西出现</p>
-</li>
-</ol>
-<h2 id="个人思考："><a href="#个人思考：" class="headerlink" title="个人思考："></a>个人思考：</h2><p>1、嫁接这个创新点到我们自己的舞台数据集上</p>
-<p>将图片打成patches,因为有关键点标签。可以将关键点所在的patches保留，其他图片块mask掉。</p>
-<p>2、代码没有公布，用的是TensorFlow+TPU，小老百姓难嫁接</p>
-<p>3、随机mask将重要信息mask了，是否应该选择性的mask?</p>
 
             </div>
             <hr>
@@ -374,15 +395,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/12/ViTDet/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ViTDet</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/04/11/MAE/">
+                        <span class="hidden-mobile">MAE</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
