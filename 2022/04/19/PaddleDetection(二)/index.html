@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="PaddleDetection(二)1.准备数据VOC数据集路径：.&#x2F;PaddleDetection&#x2F;dataset&#x2F;voc&#x2F;  label_list.txt 是类别名称列表，文件名必须是 label_list.txt。 若使用VOC数据集，config文件中use_default_label为true时不需要这个文件  1234567891011# 格式要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PaddleDetection(二)">
+<meta property="og:url" content="http://example.com/2022/04/19/PaddleDetection(%E4%BA%8C)/index.html">
+<meta property="og:site_name" content="方小七">
+<meta property="og:description" content="PaddleDetection(二)1.准备数据VOC数据集路径：.&#x2F;PaddleDetection&#x2F;dataset&#x2F;voc&#x2F;  label_list.txt 是类别名称列表，文件名必须是 label_list.txt。 若使用VOC数据集，config文件中use_default_label为true时不需要这个文件  1234567891011# 格式要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-19T07:05:00.000Z">
+<meta property="article:modified_time" content="2022-04-22T05:36:00.397Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="PaddlePaddle">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>PaddleDetection(二) - 方小七</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":true},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>琦琦怪怪🎈</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="PaddleDetection(二)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-04-19 15:05" pubdate>
+        2022年4月19日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.6k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      56 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">PaddleDetection(二)</h1>
+            
+            <div class="markdown-body">
+              <h1 id="PaddleDetection-二"><a href="#PaddleDetection-二" class="headerlink" title="PaddleDetection(二)"></a>PaddleDetection(二)</h1><h2 id="1-准备数据"><a href="#1-准备数据" class="headerlink" title="1.准备数据"></a>1.准备数据</h2><h3 id="VOC数据集"><a href="#VOC数据集" class="headerlink" title="VOC数据集"></a>VOC数据集</h3><p>路径：.&#x2F;PaddleDetection&#x2F;dataset&#x2F;voc&#x2F;</p>
+<blockquote>
+<p>label_list.txt 是类别名称列表，文件名必须是 label_list.txt。</p>
+<p>若使用VOC数据集，config文件中use_default_label为true时不需要这个文件</p>
+</blockquote>
+<figure class="highlight markdown"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 格式要求</span><br><span class="hljs-section"># trainval.txt 是训练数据集文件列表</span><br>&gt;&gt;cat trainval.txt<br>VOCdevkit/VOC2007/JPEGImages/007276.jpg VOCdevkit/VOC2007/Annotations/007276.xml<br>VOCdevkit/VOC2012/JPEGImages/2011<span class="hljs-emphasis">_002612.jpg VOCdevkit/VOC2012/Annotations/2011_</span>002612.xml<br>...<br><br><span class="hljs-section"># test.txt 是测试数据集文件列表</span><br>&gt;&gt;cat test.txt<br>VOCdevkit/VOC2007/JPEGImages/000001.jpg VOCdevkit/VOC2007/Annotations/000001.xml<br>...<br></code></pre></td></tr></table></figure>
+
+<p>先使用代码生成要求的txt文件，更改下方路径即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">writejpg2txt</span>(<span class="hljs-params">images_path, txt_name, ann_path</span>):<br>    <span class="hljs-comment"># 打开图片列表清单txt文件</span><br>    file_name = <span class="hljs-built_in">open</span>(txt_name, <span class="hljs-string">&quot;w&quot;</span>)<br>    <span class="hljs-comment"># 将路径改为绝对路径</span><br>    images_path = os.path.abspath(images_path)<br>    <span class="hljs-comment"># 查看文件夹下的图片</span><br>    images_name = os.listdir(images_path)<br><br>    count = <span class="hljs-number">0</span><br>    <span class="hljs-comment"># 遍历所有文件</span><br>    <span class="hljs-keyword">for</span> eachname <span class="hljs-keyword">in</span> images_name:<br>        <span class="hljs-comment"># 按照需要的格式写入目标txt文件</span><br>        xml_name = eachname.split(<span class="hljs-string">&#x27;.&#x27;</span>)[<span class="hljs-number">0</span>] +<span class="hljs-string">&#x27;.xml&#x27;</span><br>        file_name.write(os.path.join(images_path,eachname) + <span class="hljs-string">&quot; &quot;</span> + os.path.join(ann_path,xml_name) + <span class="hljs-string">&#x27;\n&#x27;</span>)<br>        count += <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;生成txt成功！&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#123;&#125; 张图片地址已写入&#x27;</span>.<span class="hljs-built_in">format</span>(count))<br>    file_name.close()<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    <span class="hljs-comment"># 图片存放目录</span><br>    images_path = <span class="hljs-string">&#x27;/home/fqq/PaddleDetection/dataset/LLVIP/infrared/images/test&#x27;</span><br>    <span class="hljs-comment"># 生成图片txt文件命名</span><br>    txt_name = <span class="hljs-string">&#x27;/home/fqq/PaddleDetection/dataset/LLVIP/infrared/labels/test.txt&#x27;</span><br>    ann_path = <span class="hljs-string">&#x27;/home/fqq/PaddleDetection/dataset/voc/annotations/&#x27;</span><br>    txt_name = os.path.abspath(txt_name)<br>    <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> os.path.exists(txt_name):<br>        os.system(<span class="hljs-string">r&quot;touch &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(txt_name)) <span class="hljs-comment">#调用系统命令行来创建文件</span><br>    <span class="hljs-comment">#将jpg绝对地址写入到txt中</span><br>    writejpg2txt(images_path, txt_name,ann_path)<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<h5 id="VOC数据标注文件介绍"><a href="#VOC数据标注文件介绍" class="headerlink" title="VOC数据标注文件介绍"></a>VOC数据标注文件介绍</h5></blockquote>
+<p>图片对应的xml文件内包含对应图片的基本信息，比如文件名、来源、图像尺寸以及图像中包含的物体区域信息和类别信息等。</p>
+<p>xml文件中包含以下字段：</p>
+<ul>
+<li><p>filename，表示图像名称。</p>
+</li>
+<li><p>size，表示图像尺寸。包括：图像宽度、图像高度、图像深度。</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">size</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">width</span>&gt;</span>500<span class="hljs-tag">&lt;/<span class="hljs-name">width</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">height</span>&gt;</span>375<span class="hljs-tag">&lt;/<span class="hljs-name">height</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">depth</span>&gt;</span>3<span class="hljs-tag">&lt;/<span class="hljs-name">depth</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">size</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>object字段，表示每个物体。包括:</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>name</td>
+<td>物体类别名称</td>
+</tr>
+<tr>
+<td>pose</td>
+<td>关于目标物体姿态描述（非必须字段）</td>
+</tr>
+<tr>
+<td>truncated</td>
+<td>如果物体的遮挡超过15-20％并且位于边界框之外，请标记为<code>truncated</code>（非必须字段）</td>
+</tr>
+<tr>
+<td>difficult</td>
+<td>难以识别的物体标记为<code>difficult</code>（非必须字段）</td>
+</tr>
+<tr>
+<td>bndbox子标签</td>
+<td>(xmin,ymin) 左上角坐标，(xmax,ymax) 右下角坐标，</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="2-改动配置文件"><a href="#2-改动配置文件" class="headerlink" title="2. 改动配置文件"></a>2. 改动配置文件</h2><ul>
+<li><p>数据配置文件 <code>voc.yml</code> </p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 数据评估类型</span><br>metric: VOC<br>map_type: 11point<br>num_classes: <span class="hljs-number">1</span><br><br>TrainDataset:<br>  !VOCDataSet<br>    dataset_dir: dataset/roadsign_voc<br>    anno_path: visible/train.txt<br>    label_list: label_list.txt<br>    data_fields: [<span class="hljs-string">&#x27;image&#x27;</span>, <span class="hljs-string">&#x27;gt_bbox&#x27;</span>, <span class="hljs-string">&#x27;gt_class&#x27;</span>, <span class="hljs-string">&#x27;difficult&#x27;</span>]<br><br>EvalDataset:<br>  !VOCDataSet<br>    dataset_dir: dataset/roadsign_voc<br>    anno_path: visible/test.txt<br>    label_list: label_list.txt<br>    data_fields: [<span class="hljs-string">&#x27;image&#x27;</span>, <span class="hljs-string">&#x27;gt_bbox&#x27;</span>, <span class="hljs-string">&#x27;gt_class&#x27;</span>, <span class="hljs-string">&#x27;difficult&#x27;</span>]<br><br>TestDataset:<br>  !ImageFolder<br>    anno_path: dataset/roadsign_voc/label_list.txt<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>优化器配置文件 <code>optimizer_1x.yml</code></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 总训练轮数</span><br>epoch: <span class="hljs-number">12</span><br><span class="hljs-comment"># 学习率设置</span><br>LearningRate:<br>  <span class="hljs-comment"># 0.01默认为8卡训学习率</span><br>  base_lr: <span class="hljs-number">0.01</span><br>  <span class="hljs-comment"># 学习率调整策略</span><br>  schedulers:<br>  - !PiecewiseDecay<br>    gamma: <span class="hljs-number">0.1</span><br>    <span class="hljs-comment"># 学习率变化位置(轮数)</span><br>    milestones: [<span class="hljs-number">8</span>, <span class="hljs-number">11</span>]<br>  - !LinearWarmup<br>    start_factor: <span class="hljs-number">0.1</span><br>    steps: <span class="hljs-number">1000</span><br><span class="hljs-comment">#优化器</span><br>OptimizerBuilder:<br>  optimizer:<br>    momentum: <span class="hljs-number">0.9</span><br>    <span class="hljs-built_in">type</span>: Momentum<br>  <span class="hljs-comment"># 正则化</span><br>  regularizer:<br>    factor: <span class="hljs-number">0.0001</span><br>    <span class="hljs-built_in">type</span>: L2<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>数据读取配置文件<code>faster_rcnn_swin_reader.yml</code></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 每张GPU reader进程个数</span><br>worker_num: <span class="hljs-number">2</span><br><span class="hljs-comment"># 训练数据</span><br>TrainReader:<br>  sample_transforms:<br>  - Decode: &#123;&#125;<br>  - RandomResizeCrop: &#123;resizes: [<span class="hljs-number">400</span>, <span class="hljs-number">500</span>, <span class="hljs-number">600</span>], cropsizes: [[<span class="hljs-number">384</span>, <span class="hljs-number">600</span>], ], prob: <span class="hljs-number">0.5</span>&#125;<br>  - RandomResize: &#123;target_size: [[<span class="hljs-number">480</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">512</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">544</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">576</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">608</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">640</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">672</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">704</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">736</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">768</span>, <span class="hljs-number">1333</span>], [<span class="hljs-number">800</span>, <span class="hljs-number">1333</span>]], keep_ratio: <span class="hljs-literal">True</span>, interp: <span class="hljs-number">2</span>&#125;<br>  - RandomFlip: &#123;prob: <span class="hljs-number">0.5</span>&#125;<br>  - NormalizeImage: &#123;is_scale: true, mean: [<span class="hljs-number">0.485</span>,<span class="hljs-number">0.456</span>,<span class="hljs-number">0.406</span>], std: [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>,<span class="hljs-number">0.225</span>]&#125;<br>  - Permute: &#123;&#125;<br>  batch_transforms:<br>  <span class="hljs-comment"># 由于模型存在FPN结构，输入图片需要padding为32的倍数</span><br>  - PadBatch: &#123;pad_to_stride: <span class="hljs-number">32</span>&#125;<br>  <span class="hljs-comment"># 训练时batch_size</span><br>  batch_size: <span class="hljs-number">2</span><br>   <span class="hljs-comment"># 读取数据是是否乱序</span><br>  shuffle: true<br>  <span class="hljs-comment"># 是否丢弃最后不能完整组成batch的数据</span><br>  drop_last: false<br>  <span class="hljs-comment"># 表示reader是否对gt进行组batch的操作，在rcnn系列算法中设置为false，得到的gt格式为list[Tensor]</span><br>  collate_batch: false<br>  <br><span class="hljs-comment"># 评估数据</span><br>EvalReader:<br>  sample_transforms:<br>  - Decode: &#123;&#125;<br>  - Resize: &#123;interp: <span class="hljs-number">2</span>, target_size: [<span class="hljs-number">800</span>, <span class="hljs-number">1333</span>], keep_ratio: <span class="hljs-literal">True</span>&#125;<br>  - NormalizeImage: &#123;is_scale: true, mean: [<span class="hljs-number">0.485</span>,<span class="hljs-number">0.456</span>,<span class="hljs-number">0.406</span>], std: [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>,<span class="hljs-number">0.225</span>]&#125;<br>  - Permute: &#123;&#125;<br>  batch_transforms:<br>  - PadBatch: &#123;pad_to_stride: <span class="hljs-number">32</span>&#125;<br>  batch_size: <span class="hljs-number">1</span><br>  shuffle: false<br>  drop_last: false<br>  drop_empty: false<br><br><span class="hljs-comment"># 测试数据</span><br>TestReader:<br>  inputs_def:<br>    image_shape: [<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">640</span>, <span class="hljs-number">640</span>]<br>  sample_transforms:<br>  - Decode: &#123;&#125;<br>  - Resize: &#123;interp: <span class="hljs-number">2</span>, target_size: [<span class="hljs-number">640</span>, <span class="hljs-number">640</span>], keep_ratio: <span class="hljs-literal">True</span>&#125;<br>  - NormalizeImage: &#123;is_scale: true, mean: [<span class="hljs-number">0.485</span>,<span class="hljs-number">0.456</span>,<span class="hljs-number">0.406</span>], std: [<span class="hljs-number">0.229</span>, <span class="hljs-number">0.224</span>,<span class="hljs-number">0.225</span>]&#125;<br>  - Permute: &#123;&#125;<br>  batch_transforms:<br>  - PadBatch: &#123;pad_to_stride: <span class="hljs-number">32</span>&#125;<br>  batch_size: <span class="hljs-number">1</span><br>  shuffle: false<br>  drop_last: false<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>模型配置文件 <code>faster_rcnn_swin_tiny_fpn.yml</code></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs python">architecture: FasterRCNN<br><span class="hljs-comment"># 整体组件</span><br>FasterRCNN:<br>  backbone: SwinTransformer<br>  neck: FPN<br>  rpn_head: RPNHead<br>  bbox_head: BBoxHead<br>  bbox_post_process: BBoxPostProcess<br><br><span class="hljs-comment"># tiny 版本的参数配置</span><br>SwinTransformer:<br>  embed_dim: <span class="hljs-number">96</span><br>  depths: [<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>, <span class="hljs-number">2</span>]<br>  num_heads: [<span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">12</span>, <span class="hljs-number">24</span>]<br>  window_size: <span class="hljs-number">7</span><br>  ape: false<br>  drop_path_rate: <span class="hljs-number">0.1</span><br>  patch_norm: true<br>  out_indices: [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>  pretrained: https://paddledet.bj.bcebos.com/models/pretrained/swin_tiny_patch4_window7_224.pdparams<br><br>FPN:<br>  out_channel: <span class="hljs-number">256</span><br><br>RPNHead:<br>  anchor_generator:<br>    aspect_ratios: [<span class="hljs-number">0.5</span>, <span class="hljs-number">1.0</span>, <span class="hljs-number">2.0</span>]<br>    anchor_sizes: [[<span class="hljs-number">32</span>], [<span class="hljs-number">64</span>], [<span class="hljs-number">128</span>], [<span class="hljs-number">256</span>], [<span class="hljs-number">512</span>]]<br>    strides: [<span class="hljs-number">4</span>, <span class="hljs-number">8</span>, <span class="hljs-number">16</span>, <span class="hljs-number">32</span>, <span class="hljs-number">64</span>]<br>  rpn_target_assign:<br>    batch_size_per_im: <span class="hljs-number">256</span><br>    fg_fraction: <span class="hljs-number">0.5</span><br>    negative_overlap: <span class="hljs-number">0.3</span><br>    positive_overlap: <span class="hljs-number">0.7</span><br>    use_random: <span class="hljs-literal">True</span><br>  <span class="hljs-comment"># 训练时生成proposal的参数</span><br>  train_proposal:<br>    min_size: <span class="hljs-number">0.0</span><br>    nms_thresh: <span class="hljs-number">0.7</span><br>    pre_nms_top_n: <span class="hljs-number">2000</span><br>    post_nms_top_n: <span class="hljs-number">1000</span><br>    topk_after_collect: <span class="hljs-literal">True</span><br>  <span class="hljs-comment"># 评估时生成proposal的参数</span><br>  test_proposal:<br>    min_size: <span class="hljs-number">0.0</span><br>    nms_thresh: <span class="hljs-number">0.7</span><br>    pre_nms_top_n: <span class="hljs-number">1000</span><br>    post_nms_top_n: <span class="hljs-number">1000</span><br><br><br>BBoxHead:<br>  head: TwoFCHead<br>  roi_extractor:<br>    resolution: <span class="hljs-number">7</span><br>    sampling_ratio: <span class="hljs-number">0</span><br>    aligned: <span class="hljs-literal">True</span><br>  bbox_assigner: BBoxAssigner<br><br>BBoxAssigner:<br>  batch_size_per_im: <span class="hljs-number">512</span><br>  <span class="hljs-comment"># 背景阈值</span><br>  bg_thresh: <span class="hljs-number">0.5</span><br>  <span class="hljs-comment">#前景阈值</span><br>  fg_thresh: <span class="hljs-number">0.5</span><br>  <span class="hljs-comment">#前景伊利</span><br>  fg_fraction: <span class="hljs-number">0.25</span><br>  <span class="hljs-comment">#是否随机采样</span><br>  use_random: <span class="hljs-literal">True</span><br><br>TwoFCHead:<br>  out_channel: <span class="hljs-number">1024</span><br><br>BBoxPostProcess:<br>  <span class="hljs-comment"># 解码</span><br>  decode: RCNNBox<br>  nms:<br>    <span class="hljs-comment"># 使用MultiClassNMS</span><br>    name: MultiClassNMS<br>    keep_top_k: <span class="hljs-number">100</span><br>    score_threshold: <span class="hljs-number">0.05</span><br>    nms_threshold: <span class="hljs-number">0.5</span><br><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>运行时置文件<code>runtime.yml</code></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 是否使用GPU</span><br>use_gpu: true<br>use_xpu: false<br><span class="hljs-comment"># 日志打印间隔</span><br>log_iter: <span class="hljs-number">20</span><br>save_dir: output<br><span class="hljs-comment"># 模型保存间隔时间</span><br>snapshot_epoch: <span class="hljs-number">1</span><br>print_flops: false<br><br><span class="hljs-comment"># Exporting the model</span><br>export:<br>  post_process: <span class="hljs-literal">True</span>  <span class="hljs-comment"># Whether post-processing is included in the network when export model.</span><br>  nms: <span class="hljs-literal">True</span>           <span class="hljs-comment"># Whether NMS is included in the network when export model.</span><br>  benchmark: <span class="hljs-literal">False</span>    <span class="hljs-comment"># It is used to testing model performance, if set `True`, post-process and NMS will not be exported.</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><ul>
+<li><p>单卡训练</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">python tools/train.py -c configs/yolov3/yolov3_mobilenet_v1_roadsign.yml<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>多参数</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">CUDA_VISIBLE_DEVICES=<span class="hljs-number">0</span> \<br>python main_single_gpu.py \<br>    -cfg=<span class="hljs-string">&#x27;./configs/detr_resnet50.yaml&#x27;</span> \<br>    -dataset=<span class="hljs-string">&#x27;coco&#x27;</span> \<br>    -batch_size=<span class="hljs-number">4</span> \<br>    -data_path=<span class="hljs-string">&#x27;/dataset/coco&#x27;</span> \<br>    -<span class="hljs-built_in">eval</span> \<br>    -pretrained=<span class="hljs-string">&#x27;./detr_resnet50&#x27;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%A1%86%E6%9E%B6%E4%BD%BF%E7%94%A8/">框架使用</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/PaddlePaddle/">PaddlePaddle</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/04/19/Linux%E5%88%9B%E5%BB%BA%E6%96%B0%E7%94%A8%E6%88%B7/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux创建新用户</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/04/19/PaddleDetection(%E4%B8%80)/">
+                        <span class="hidden-mobile">PaddleDetection(一)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"ezAjSCt600hHMv0BReBYtgEg-gzGzoHsz","appKey":"ED6lqUmM45dvAhwFci9k1ioL","path":"window.location.pathname","placeholder":"欢迎留言呀~","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> # <i class="iconfont icon-love"></i> <i> | </i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div>方小七的博客 | 记录学习的过程</div>
+
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

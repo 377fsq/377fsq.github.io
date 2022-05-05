@@ -16,25 +16,26 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="MAE与之前的Transformer有什么区别？Transformer Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空 ViT MAE：可以看作是一个将Bert拓展到CV 一、标题 auto指的是“自”的意思，标号是图片自己本身 scalable：规模大（efficient来形容速度快）  二、摘要“we develop an asymmetric encoder-decoder">
+    <meta name="description" content="Linux新建用户添加用户1useradd -d &#x2F;home&#x2F;fqq -m fqq   -d 新账户的主目录 -m  创建用户的主目录 设置密码1passwd fqq  设置权限1sudo visudo   找到user privilege这一行  通过按i写入如上命令,给新用户(fqq)分配所有权限 删除用户1sudo userdel -r fqq  安装zsh  oh-my-zsh安装zsh1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MAE">
-<meta property="og:url" content="http://example.com/2022/04/11/MAE/index.html">
+<meta property="og:title" content="Linux创建新用户">
+<meta property="og:url" content="http://example.com/2022/04/19/Linux%E5%88%9B%E5%BB%BA%E6%96%B0%E7%94%A8%E6%88%B7/index.html">
 <meta property="og:site_name" content="方小七">
-<meta property="og:description" content="MAE与之前的Transformer有什么区别？Transformer Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空 ViT MAE：可以看作是一个将Bert拓展到CV 一、标题 auto指的是“自”的意思，标号是图片自己本身 scalable：规模大（efficient来形容速度快）  二、摘要“we develop an asymmetric encoder-decoder">
+<meta property="og:description" content="Linux新建用户添加用户1useradd -d &#x2F;home&#x2F;fqq -m fqq   -d 新账户的主目录 -m  创建用户的主目录 设置密码1passwd fqq  设置权限1sudo visudo   找到user privilege这一行  通过按i写入如上命令,给新用户(fqq)分配所有权限 删除用户1sudo userdel -r fqq  安装zsh  oh-my-zsh安装zsh1">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181112127.png">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181141648.png">
-<meta property="article:published_time" content="2022-04-11T10:03:03.000Z">
-<meta property="article:modified_time" content="2022-04-11T12:06:13.884Z">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191423262.png">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419192005618.png">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/7ff79bb522de4430a7b107f8a86ff867.png">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191608991.png">
+<meta property="article:published_time" content="2022-04-19T10:51:36.000Z">
+<meta property="article:modified_time" content="2022-04-19T12:00:42.732Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="Linux新建用户">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png">
+<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191423262.png">
   
   
-  <title>MAE - 方小七</title>
+  <title>Linux创建新用户 - 方小七</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -180,7 +181,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="MAE">
+            <span class="h2" id="subtitle" title="Linux创建新用户">
               
             </span>
 
@@ -190,8 +191,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-11 18:03" pubdate>
-        2022年4月11日 晚上
+      <time datetime="2022-04-19 18:51" pubdate>
+        2022年4月19日 晚上
       </time>
     </span>
   
@@ -201,7 +202,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 字
+      929 字
     </span>
   
 
@@ -210,7 +211,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15 分钟
+      8 分钟
     </span>
   
 
@@ -239,107 +240,60 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">MAE</h1>
+            <h1 style="display: none">Linux创建新用户</h1>
             
             <div class="markdown-body">
-              <h1 id="MAE"><a href="#MAE" class="headerlink" title="MAE"></a>MAE</h1><h2 id="与之前的Transformer有什么区别？"><a href="#与之前的Transformer有什么区别？" class="headerlink" title="与之前的Transformer有什么区别？"></a>与之前的Transformer有什么区别？</h2><p>Transformer</p>
-<p>Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空</p>
-<p>ViT</p>
-<p>MAE：可以看作是一个将Bert拓展到CV</p>
-<h2 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h2><ul>
-<li>auto指的是“自”的意思，标号是图片自己本身</li>
-<li>scalable：规模大（efficient来形容速度快）</li>
-</ul>
-<h2 id="二、摘要"><a href="#二、摘要" class="headerlink" title="二、摘要"></a>二、摘要</h2><p>“we develop an asymmetric encoder-decoder architecture, with an encoder that operates only on the visible subset of patches (without mask tokens), along with a lightweight decoder that reconstructs the original image from the latent representation and mask tokens. Second, we find that masking a high proportion of the input image, e.g., 75%, yields a nontrivial and meaningful self-supervisory task.” (He 等。, 2021, p. 1)</p>
-<ul>
-<li>设计一个非对称的encoder-decoder</li>
-<li>编码器只作用于可见的patch中</li>
-<li>如果遮住了较多部分如75%，那么他会得到一个非显然的而且有意义的自监督的任务</li>
-</ul>
-<p>“Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.” (He 等。, 2021, p. 1)</p>
-<p>该研究主要是用来做迁移学习的。</p>
-<h2 id="三、关键图"><a href="#三、关键图" class="headerlink" title="三、关键图"></a>三、关键图</h2><p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png" srcset="/img/loading.gif" lazyload alt="image-20220411184342734"></p>
-<ul>
-<li>灰色，表示盖住</li>
-<li>没有被盖住的拿出来，放入encoder（ViT）：主要计算量来自于编码器</li>
-<li>得到每一个块对应的特征</li>
-<li>把被盖住的块，重新放回原来的位置（原始图拉成了一个向量）</li>
-<li>输入到解码器decoder</li>
-<li>解码器重构原来的信息</li>
-</ul>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181112127.png" srcset="/img/loading.gif" lazyload alt="image-20220411181112127"></p>
-<p>第一列是打了mask  第二列是重构  第三列是原图</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181141648.png" srcset="/img/loading.gif" lazyload alt="image-20220411181141648"></p>
-<p>mask不同比例的演示效果</p>
-<h2 id="四、引言"><a href="#四、引言" class="headerlink" title="四、引言"></a>四、引言</h2><p><em>研究问题</em></p>
-<ul>
-<li>是什么让自编码mask在视觉和语言领域效果不同？</li>
-</ul>
-<p><em>对应提出观点</em></p>
-<ol>
-<li>CV通常使用卷积扫来扫去，卷积窗口很难区分边界，最后难还原</li>
-<li>信息的密度有点不一样，图片信息冗余，可能可以通过插值插回来</li>
-<li>在视觉中，解码器仅仅使用一个MLP是不够的</li>
-</ol>
-<p><strong>写作手法</strong></p>
-<p>提问题-回答问题-引导出创新</p>
-<p>以这样的结构是来解释为什么要设计成这个样子的原因讲清楚了</p>
-<h2 id="五、相关工作"><a href="#五、相关工作" class="headerlink" title="五、相关工作"></a>五、相关工作</h2><ul>
-<li>“Masked language modeling”</li>
-<li>“Autoencoding”</li>
-<li>“Masked image encoding”</li>
-<li>“Self-supervised learning”</li>
-</ul>
-<h2 id="六、方法"><a href="#六、方法" class="headerlink" title="六、方法"></a>六、方法</h2><p>干货章节</p>
-<ol>
-<li><p>介绍掩码是怎么工作的</p>
-<p> 只采样少量的块</p>
-</li>
-<li><p>MAE encoder 和ViT 差不多</p>
-<p> 被mask的就不传入了</p>
-</li>
-<li><p>MAE decoder（主要作用做在预训练的时候）</p>
-<p> 其实就是另外一个transformer</p>
-</li>
-<li><p>怎么样重构出原来的像素</p>
-</li>
-<li><p>简单实现</p>
-<ul>
-<li>首先生成token列，做一次线性投影，再加上位置信息</li>
-<li>把这个序列随机打乱一下，把最后一块拿掉（相当于打乱之后保留前面25%，后面的丢掉）【随机采样】</li>
-<li>在解码的时候要在后面附上跟之前长度一样的mask的patches</li>
-<li>重新unshuffle一下</li>
-</ul>
-</li>
-</ol>
-<h2 id="七、实验"><a href="#七、实验" class="headerlink" title="七、实验"></a>七、实验</h2><ol>
-<li><p>ImageNet上的实验</p>
-<p> “with strong regularization” 在之前ViT的论文中说需要一个比较大的数据集才能够得到好的效果，后来研究发现如果加入合适的正则项的话，其实在小一点的数据上也是能训练出来的。</p>
-<ul>
-<li>无监督的训练</li>
-<li>有监督的训练</li>
-</ul>
-</li>
-<li><p>各种消融实验（不同超参数）</p>
-</li>
-<li><p>比的是与其他方法比</p>
-</li>
-<li><p>局部微调【高层于自己的任务相关，最好调一调】</p>
-</li>
-</ol>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
-<li><p>简单算法？（主要是针对该领域的研究）</p>
-<p> MAE基于ViT,ViT基于Transformer模型算法不会简单</p>
-</li>
-<li><p>效果可以媲美有标号的工作</p>
-</li>
-<li><p>潜在影响【类似于说GAN】,可能会有不存在的东西出现</p>
-</li>
-</ol>
-<h2 id="个人思考："><a href="#个人思考：" class="headerlink" title="个人思考："></a>个人思考：</h2><p>1、嫁接这个创新点到我们自己的舞台数据集上</p>
-<p>将图片打成patches,因为有关键点标签。可以将关键点所在的patches保留，其他图片块mask掉。</p>
-<p>2、代码没有公布，用的是TensorFlow+TPU，小老百姓难嫁接</p>
-<p>3、随机mask将重要信息mask了，是否应该选择性的mask?</p>
+              <h1 id="Linux新建用户"><a href="#Linux新建用户" class="headerlink" title="Linux新建用户"></a>Linux新建用户</h1><h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs bash">useradd -d /home/fqq -m fqq <br></code></pre></td></tr></table></figure>
+
+<p>-d 新账户的主目录</p>
+<p>-m  创建用户的主目录</p>
+<h2 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">passwd fqq<br></code></pre></td></tr></table></figure>
+
+<h2 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo visudo <br></code></pre></td></tr></table></figure>
+
+<p>找到user privilege这一行</p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191423262.png" srcset="/img/loading.gif" lazyload alt="image-20220419191423262"></p>
+<p>通过按i写入如上命令,给新用户(fqq)分配所有权限</p>
+<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo userdel -r fqq<br></code></pre></td></tr></table></figure>
+
+<h2 id="安装zsh-oh-my-zsh"><a href="#安装zsh-oh-my-zsh" class="headerlink" title="安装zsh  oh-my-zsh"></a>安装zsh  oh-my-zsh</h2><h3 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get install zsh<br>chsh -s /bin/zsh #将zsh替换为你的默认shell<br></code></pre></td></tr></table></figure>
+
+<h3 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh-my-zsh"></a>安装oh-my-zsh</h3><table>
+<thead>
+<tr>
+<th>方式</th>
+<th align="center">命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>curl</strong></td>
+<td align="center">sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;">https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</a></td>
+</tr>
+<tr>
+<td><strong>wget</strong></td>
+<td align="center">sh -c “$(wget -O- <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;">https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</a></td>
+</tr>
+<tr>
+<td><strong>fetch</strong></td>
+<td align="center">sh -c “$(fetch -o - <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;">https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</a></td>
+</tr>
+</tbody></table>
+<p>选择一种即可</p>
+<h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim ~/.zshrc<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419192005618.png" srcset="/img/loading.gif" lazyload alt="image-20220419192005618"></p>
+<p>例如配置成</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ZSH_THEME=&quot;xiong-chiamiov-plus&quot;  #有些主题需要下载<br></code></pre></td></tr></table></figure>
+
+<h3 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h3><p>添加代码高亮与自动补全</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd ~/.oh-my-zsh/custom/plugins/<br>git clone https://github.com/zsh-users/zsh-autosuggestions.git #自动补全<br>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git #代码高亮<br></code></pre></td></tr></table></figure>
+
+<p>然后将这两个插件添加到【~&#x2F;.zshrc】中</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">zsh-<span class="hljs-built_in">auto</span>suggestions zsh-syntax-highlighting<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/7ff79bb522de4430a7b107f8a86ff867.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="设置命令解释器-安装完zsh再改"><a href="#设置命令解释器-安装完zsh再改" class="headerlink" title="设置命令解释器(安装完zsh再改)"></a>设置命令解释器(安装完zsh再改)</h2><p>sudo vim &#x2F;etc&#x2F;passwd<br>将文件拉倒最后修改解释器类型</p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191608991.png" srcset="/img/loading.gif" lazyload alt="image-20220419191608991"></p>
 
             </div>
             <hr>
@@ -349,7 +303,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
                     
                   </div>
                 
@@ -357,7 +311,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Transformer/">Transformer</a>
+                      <a class="hover-with-bg" href="/tags/Linux%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7/">Linux新建用户</a>
                     
                   </div>
                 
@@ -374,15 +328,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/12/ViTDet/">
+                      <a href="/2022/04/25/SpringBoot(%E4%B8%80)/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ViTDet</span>
+                        <span class="hidden-mobile">SpringBoot(一)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/04/19/PaddleDetection(%E4%BA%8C)/">
+                        <span class="hidden-mobile">PaddleDetection(二)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

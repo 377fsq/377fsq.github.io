@@ -16,25 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="MAE与之前的Transformer有什么区别？Transformer Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空 ViT MAE：可以看作是一个将Bert拓展到CV 一、标题 auto指的是“自”的意思，标号是图片自己本身 scalable：规模大（efficient来形容速度快）  二、摘要“we develop an asymmetric encoder-decoder">
+    <meta name="description" content="SpringBoot简介回顾什么是SpringSpring是一个开源框架，2003 年兴起的一个轻量级的Java 开发框架，作者：Rod Johnson  。 Spring是为了解决企业级应用开发的复杂性而创建的，简化开发。 Spring是如何简化Java开发为了降低Java开发的复杂性，Spring采用了以下4种关键策略： 1、基于POJO的轻量级和最小侵入性编程，所有东西都是bean； 2、通">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MAE">
-<meta property="og:url" content="http://example.com/2022/04/11/MAE/index.html">
+<meta property="og:title" content="SpringBoot(一)">
+<meta property="og:url" content="http://example.com/2022/04/25/SpringBoot(%E4%B8%80)/index.html">
 <meta property="og:site_name" content="方小七">
-<meta property="og:description" content="MAE与之前的Transformer有什么区别？Transformer Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空 ViT MAE：可以看作是一个将Bert拓展到CV 一、标题 auto指的是“自”的意思，标号是图片自己本身 scalable：规模大（efficient来形容速度快）  二、摘要“we develop an asymmetric encoder-decoder">
+<meta property="og:description" content="SpringBoot简介回顾什么是SpringSpring是一个开源框架，2003 年兴起的一个轻量级的Java 开发框架，作者：Rod Johnson  。 Spring是为了解决企业级应用开发的复杂性而创建的，简化开发。 Spring是如何简化Java开发为了降低Java开发的复杂性，Spring采用了以下4种关键策略： 1、基于POJO的轻量级和最小侵入性编程，所有东西都是bean； 2、通">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181112127.png">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181141648.png">
-<meta property="article:published_time" content="2022-04-11T10:03:03.000Z">
-<meta property="article:modified_time" content="2022-04-11T12:06:13.884Z">
+<meta property="article:published_time" content="2022-04-25T10:58:52.000Z">
+<meta property="article:modified_time" content="2022-04-25T11:19:25.110Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="SpringBoot">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png">
   
   
-  <title>MAE - 方小七</title>
+  <title>SpringBoot(一) - 方小七</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -180,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="MAE">
+            <span class="h2" id="subtitle" title="SpringBoot(一)">
               
             </span>
 
@@ -190,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-11 18:03" pubdate>
-        2022年4月11日 晚上
+      <time datetime="2022-04-25 18:58" pubdate>
+        2022年4月25日 晚上
       </time>
     </span>
   
@@ -239,107 +235,39 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">MAE</h1>
+            <h1 style="display: none">SpringBoot(一)</h1>
             
             <div class="markdown-body">
-              <h1 id="MAE"><a href="#MAE" class="headerlink" title="MAE"></a>MAE</h1><h2 id="与之前的Transformer有什么区别？"><a href="#与之前的Transformer有什么区别？" class="headerlink" title="与之前的Transformer有什么区别？"></a>与之前的Transformer有什么区别？</h2><p>Transformer</p>
-<p>Bert：NLP领域，相当于把一些词挖掉，在训练模型做完形填空</p>
-<p>ViT</p>
-<p>MAE：可以看作是一个将Bert拓展到CV</p>
-<h2 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h2><ul>
-<li>auto指的是“自”的意思，标号是图片自己本身</li>
-<li>scalable：规模大（efficient来形容速度快）</li>
-</ul>
-<h2 id="二、摘要"><a href="#二、摘要" class="headerlink" title="二、摘要"></a>二、摘要</h2><p>“we develop an asymmetric encoder-decoder architecture, with an encoder that operates only on the visible subset of patches (without mask tokens), along with a lightweight decoder that reconstructs the original image from the latent representation and mask tokens. Second, we find that masking a high proportion of the input image, e.g., 75%, yields a nontrivial and meaningful self-supervisory task.” (He 等。, 2021, p. 1)</p>
+              <h1 id="SpringBoot简介"><a href="#SpringBoot简介" class="headerlink" title="SpringBoot简介"></a>SpringBoot简介</h1><h2 id="回顾什么是Spring"><a href="#回顾什么是Spring" class="headerlink" title="回顾什么是Spring"></a>回顾什么是Spring</h2><p>Spring是一个开源框架，2003 年兴起的一个轻量级的Java 开发框架，作者：Rod Johnson  。</p>
+<p><strong>Spring是为了解决企业级应用开发的复杂性而创建的，简化开发。</strong></p>
+<h2 id="Spring是如何简化Java开发"><a href="#Spring是如何简化Java开发" class="headerlink" title="Spring是如何简化Java开发"></a>Spring是如何简化Java开发</h2><p>为了降低Java开发的复杂性，Spring采用了以下4种关键策略：</p>
+<p>1、基于POJO的轻量级和最小侵入性编程，所有东西都是bean；</p>
+<p>2、通过IOC，依赖注入（DI）和面向接口实现松耦合；</p>
+<p>3、基于切面（AOP）和惯例进行声明式编程；</p>
+<p>4、通过切面和模版减少样式代码，RedisTemplate，xxxTemplate；</p>
+<h2 id="什么是SpringBoot"><a href="#什么是SpringBoot" class="headerlink" title="什么是SpringBoot"></a>什么是SpringBoot</h2><p>学过javaweb的同学就知道，开发一个web应用，从最初开始接触Servlet结合Tomcat, 跑出一个Hello Wolrld程序，是要经历特别多的步骤；后来就用了框架Struts，再后来是SpringMVC，到了现在的SpringBoot，过一两年又会有其他web框架出现；你们有经历过框架不断的演进，然后自己开发项目所有的技术也在不断的变化、改造吗？建议都可以去经历一遍；</p>
+<p>言归正传，什么是SpringBoot呢，就是一个javaweb的开发框架，和SpringMVC类似，对比其他javaweb框架的好处，官方说是简化开发，<strong>约定大于配置</strong>，  you can “just run”，能迅速的开发web应用，几行代码开发一个http接口。</p>
+<p>所有的技术框架的发展似乎都遵循了一条主线规律：从一个复杂应用场景 衍生 一种规范框架，人们只需要进行各种配置而不需要自己去实现它，这时候强大的配置功能成了优点；发展到一定程度之后，人们根据实际生产应用情况，选取其中实用功能和设计精华，重构出一些轻量级的框架；之后为了提高开发效率，嫌弃原先的各类配置过于麻烦，于是开始提倡“约定大于配置”，进而衍生出一些一站式的解决方案。</p>
+<p>是的这就是Java企业级应用-&gt;J2EE-&gt;spring-&gt;springboot的过程。</p>
+<p>随着 Spring 不断的发展，涉及的领域越来越多，项目整合开发需要配合各种各样的文件，慢慢变得不那么易用简单，违背了最初的理念，甚至人称配置地狱。Spring Boot 正是在这样的一个背景下被抽象出来的开发框架，目的为了让大家更容易的使用 Spring 、更容易的集成各种常用的中间件、开源软件；</p>
+<p>Spring Boot 基于 Spring 开发，Spirng Boot 本身并不提供 Spring 框架的核心特性以及扩展功能，只是用于快速、敏捷地开发新一代基于 Spring 框架的应用程序。也就是说，它并不是用来替代 Spring 的解决方案，而是和 Spring 框架紧密结合用于提升 Spring 开发者体验的工具。Spring Boot 以<strong>约定大于配置的核心思想</strong>，默认帮我们进行了很多设置，多数 Spring Boot 应用只需要很少的 Spring 配置。同时它集成了大量常用的第三方库配置（例如 Redis、MongoDB、Jpa、RabbitMQ、Quartz 等等），Spring Boot 应用中这些第三方库几乎可以零配置的开箱即用。</p>
+<p>简单来说就是SpringBoot其实不是什么新的框架，它默认配置了很多框架的使用方式，就像maven整合了所有的jar包，spring boot整合了所有的框架 。</p>
+<p>Spring Boot 出生名门，从一开始就站在一个比较高的起点，又经过这几年的发展，生态足够完善，Spring Boot 已经当之无愧成为 Java 领域最热门的技术。</p>
+<p><strong>Spring Boot的主要优点：</strong></p>
 <ul>
-<li>设计一个非对称的encoder-decoder</li>
-<li>编码器只作用于可见的patch中</li>
-<li>如果遮住了较多部分如75%，那么他会得到一个非显然的而且有意义的自监督的任务</li>
+<li>为所有Spring开发者更快的入门</li>
+<li><strong>开箱即用</strong>，提供各种默认配置来简化项目配置</li>
+<li>内嵌式容器简化Web项目</li>
+<li>没有冗余代码生成和XML配置的要求</li>
 </ul>
-<p>“Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.” (He 等。, 2021, p. 1)</p>
-<p>该研究主要是用来做迁移学习的。</p>
-<h2 id="三、关键图"><a href="#三、关键图" class="headerlink" title="三、关键图"></a>三、关键图</h2><p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411184342734.png" srcset="/img/loading.gif" lazyload alt="image-20220411184342734"></p>
-<ul>
-<li>灰色，表示盖住</li>
-<li>没有被盖住的拿出来，放入encoder（ViT）：主要计算量来自于编码器</li>
-<li>得到每一个块对应的特征</li>
-<li>把被盖住的块，重新放回原来的位置（原始图拉成了一个向量）</li>
-<li>输入到解码器decoder</li>
-<li>解码器重构原来的信息</li>
-</ul>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181112127.png" srcset="/img/loading.gif" lazyload alt="image-20220411181112127"></p>
-<p>第一列是打了mask  第二列是重构  第三列是原图</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220411181141648.png" srcset="/img/loading.gif" lazyload alt="image-20220411181141648"></p>
-<p>mask不同比例的演示效果</p>
-<h2 id="四、引言"><a href="#四、引言" class="headerlink" title="四、引言"></a>四、引言</h2><p><em>研究问题</em></p>
-<ul>
-<li>是什么让自编码mask在视觉和语言领域效果不同？</li>
-</ul>
-<p><em>对应提出观点</em></p>
-<ol>
-<li>CV通常使用卷积扫来扫去，卷积窗口很难区分边界，最后难还原</li>
-<li>信息的密度有点不一样，图片信息冗余，可能可以通过插值插回来</li>
-<li>在视觉中，解码器仅仅使用一个MLP是不够的</li>
-</ol>
-<p><strong>写作手法</strong></p>
-<p>提问题-回答问题-引导出创新</p>
-<p>以这样的结构是来解释为什么要设计成这个样子的原因讲清楚了</p>
-<h2 id="五、相关工作"><a href="#五、相关工作" class="headerlink" title="五、相关工作"></a>五、相关工作</h2><ul>
-<li>“Masked language modeling”</li>
-<li>“Autoencoding”</li>
-<li>“Masked image encoding”</li>
-<li>“Self-supervised learning”</li>
-</ul>
-<h2 id="六、方法"><a href="#六、方法" class="headerlink" title="六、方法"></a>六、方法</h2><p>干货章节</p>
-<ol>
-<li><p>介绍掩码是怎么工作的</p>
-<p> 只采样少量的块</p>
-</li>
-<li><p>MAE encoder 和ViT 差不多</p>
-<p> 被mask的就不传入了</p>
-</li>
-<li><p>MAE decoder（主要作用做在预训练的时候）</p>
-<p> 其实就是另外一个transformer</p>
-</li>
-<li><p>怎么样重构出原来的像素</p>
-</li>
-<li><p>简单实现</p>
-<ul>
-<li>首先生成token列，做一次线性投影，再加上位置信息</li>
-<li>把这个序列随机打乱一下，把最后一块拿掉（相当于打乱之后保留前面25%，后面的丢掉）【随机采样】</li>
-<li>在解码的时候要在后面附上跟之前长度一样的mask的patches</li>
-<li>重新unshuffle一下</li>
-</ul>
-</li>
-</ol>
-<h2 id="七、实验"><a href="#七、实验" class="headerlink" title="七、实验"></a>七、实验</h2><ol>
-<li><p>ImageNet上的实验</p>
-<p> “with strong regularization” 在之前ViT的论文中说需要一个比较大的数据集才能够得到好的效果，后来研究发现如果加入合适的正则项的话，其实在小一点的数据上也是能训练出来的。</p>
-<ul>
-<li>无监督的训练</li>
-<li>有监督的训练</li>
-</ul>
-</li>
-<li><p>各种消融实验（不同超参数）</p>
-</li>
-<li><p>比的是与其他方法比</p>
-</li>
-<li><p>局部微调【高层于自己的任务相关，最好调一调】</p>
-</li>
-</ol>
-<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
-<li><p>简单算法？（主要是针对该领域的研究）</p>
-<p> MAE基于ViT,ViT基于Transformer模型算法不会简单</p>
-</li>
-<li><p>效果可以媲美有标号的工作</p>
-</li>
-<li><p>潜在影响【类似于说GAN】,可能会有不存在的东西出现</p>
-</li>
-</ol>
-<h2 id="个人思考："><a href="#个人思考：" class="headerlink" title="个人思考："></a>个人思考：</h2><p>1、嫁接这个创新点到我们自己的舞台数据集上</p>
-<p>将图片打成patches,因为有关键点标签。可以将关键点所在的patches保留，其他图片块mask掉。</p>
-<p>2、代码没有公布，用的是TensorFlow+TPU，小老百姓难嫁接</p>
-<p>3、随机mask将重要信息mask了，是否应该选择性的mask?</p>
+<h2 id="学习过程"><a href="#学习过程" class="headerlink" title="学习过程"></a>学习过程</h2><p>JavaSE:OOP(学习面向对象思想)</p>
+<p>mysql:持久化</p>
+<p>html+css+js+jquery+框架：需要审美</p>
+<p>javaweb:独立开发MVC三层架构网站：原始</p>
+<p>ssm:框架-&gt;简化了开发流程，配置也开始较为复杂</p>
+<p>项目以war包打包:tomcat打包</p>
+<p>Spring再简化-&gt;SpringBoot：微服务架构 jar包-&gt;内嵌tomcat</p>
+<p>随着服务越来越多：springcloud</p>
 
             </div>
             <hr>
@@ -349,7 +277,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
+                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
                     
                   </div>
                 
@@ -357,7 +285,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Transformer/">Transformer</a>
+                      <a class="hover-with-bg" href="/tags/SpringBoot/">SpringBoot</a>
                     
                   </div>
                 
@@ -374,15 +302,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/12/ViTDet/">
+                      <a href="/2022/04/26/cosFormer/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ViTDet</span>
+                        <span class="hidden-mobile">cosFormer</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/04/19/Linux%E5%88%9B%E5%BB%BA%E6%96%B0%E7%94%A8%E6%88%B7/">
+                        <span class="hidden-mobile">Linux创建新用户</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
