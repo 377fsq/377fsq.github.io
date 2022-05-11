@@ -16,26 +16,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Linux新建用户添加用户1useradd -d &#x2F;home&#x2F;fqq -m fqq   -d 新账户的主目录 -m  创建用户的主目录 设置密码1passwd fqq  设置权限1sudo visudo   找到user privilege这一行  通过按i写入如上命令,给新用户(fqq)分配所有权限 删除用户1sudo userdel -r fqq  安装zsh  oh-my-zsh安装zsh1">
+    <meta name="description" content="LaTeX 公式篇行内公式1$ f(x) &#x3D; a+b $  $ f(x) &#x3D; a+b $ 行间公式1$$ f(x) &#x3D; a+b $$  $$ f(x) &#x3D; a+b $$ 手动编号1$$ f(x) &#x3D; a - b \tag&amp;#123;1.1&amp;#125; $$  $$ f(x) &#x3D; a - b \tag{1.1} $$ 简单运算拉丁字母、阿拉伯数字和 +-*&#x2F;&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux创建新用户">
-<meta property="og:url" content="http://example.com/2022/04/19/Linux%E5%88%9B%E5%BB%BA%E6%96%B0%E7%94%A8%E6%88%B7/index.html">
+<meta property="og:title" content="公式大全">
+<meta property="og:url" content="http://example.com/2022/05/05/%E5%85%AC%E5%BC%8F%E5%A4%A7%E5%85%A8/index.html">
 <meta property="og:site_name" content="方小七">
-<meta property="og:description" content="Linux新建用户添加用户1useradd -d &#x2F;home&#x2F;fqq -m fqq   -d 新账户的主目录 -m  创建用户的主目录 设置密码1passwd fqq  设置权限1sudo visudo   找到user privilege这一行  通过按i写入如上命令,给新用户(fqq)分配所有权限 删除用户1sudo userdel -r fqq  安装zsh  oh-my-zsh安装zsh1">
+<meta property="og:description" content="LaTeX 公式篇行内公式1$ f(x) &#x3D; a+b $  $ f(x) &#x3D; a+b $ 行间公式1$$ f(x) &#x3D; a+b $$  $$ f(x) &#x3D; a+b $$ 手动编号1$$ f(x) &#x3D; a - b \tag&amp;#123;1.1&amp;#125; $$  $$ f(x) &#x3D; a - b \tag{1.1} $$ 简单运算拉丁字母、阿拉伯数字和 +-*&#x2F;&amp;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191423262.png">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419192005618.png">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/7ff79bb522de4430a7b107f8a86ff867.png">
-<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191608991.png">
-<meta property="article:published_time" content="2022-04-19T10:51:36.000Z">
-<meta property="article:modified_time" content="2022-05-05T13:35:53.956Z">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-684e48900e810dff360c23b4ffe99680_r.jpg">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-da3e717cf670582fbfbdddee33073524_r.jpg">
+<meta property="article:published_time" content="2022-05-05T13:40:59.000Z">
+<meta property="article:modified_time" content="2022-05-09T05:56:18.359Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Linux新建用户">
+<meta property="article:tag" content="公式">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191423262.png">
+<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-684e48900e810dff360c23b4ffe99680_r.jpg">
   
   
-  <title>Linux创建新用户 - 方小七</title>
+  <title>公式大全 - 方小七</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -181,7 +179,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Linux创建新用户">
+            <span class="h2" id="subtitle" title="公式大全">
               
             </span>
 
@@ -191,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-19 18:51" pubdate>
-        2022年4月19日 晚上
+      <time datetime="2022-05-05 21:40" pubdate>
+        2022年5月5日 晚上
       </time>
     </span>
   
@@ -202,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      929 字
+      3.5k 字
     </span>
   
 
@@ -211,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      8 分钟
+      30 分钟
     </span>
   
 
@@ -240,60 +238,86 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Linux创建新用户</h1>
+            <h1 style="display: none">公式大全</h1>
             
             <div class="markdown-body">
-              <h1 id="Linux新建用户"><a href="#Linux新建用户" class="headerlink" title="Linux新建用户"></a>Linux新建用户</h1><h2 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h2><figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs bash">useradd -d /home/fqq -m fqq <br></code></pre></td></tr></table></figure>
+              <h1 id="LaTeX-公式篇"><a href="#LaTeX-公式篇" class="headerlink" title="LaTeX 公式篇"></a>LaTeX 公式篇</h1><h2 id="行内公式"><a href="#行内公式" class="headerlink" title="行内公式"></a><strong>行内公式</strong></h2><figure class="highlight text"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs text">$ f(x) = a+b $<br></code></pre></td></tr></table></figure>
 
-<p>-d 新账户的主目录</p>
-<p>-m  创建用户的主目录</p>
-<h2 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">passwd fqq<br></code></pre></td></tr></table></figure>
+<p>$ f(x) &#x3D; a+b $</p>
+<h2 id="行间公式"><a href="#行间公式" class="headerlink" title="行间公式"></a><strong>行间公式</strong></h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ f(x) = a+b $$<br></code></pre></td></tr></table></figure>
 
-<h2 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo visudo <br></code></pre></td></tr></table></figure>
+<p>$$ f(x) &#x3D; a+b $$</p>
+<h2 id="手动编号"><a href="#手动编号" class="headerlink" title="手动编号"></a><strong>手动编号</strong></h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ f(x) = a - b \tag&#123;1.1&#125; $$<br></code></pre></td></tr></table></figure>
 
-<p>找到user privilege这一行</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191423262.png" srcset="/img/loading.gif" lazyload alt="图1"></p>
-<p>通过按i写入如上命令,给新用户(fqq)分配所有权限</p>
-<h2 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo userdel -r fqq<br></code></pre></td></tr></table></figure>
+<p>$$ f(x) &#x3D; a - b \tag{1.1} $$</p>
+<h2 id="简单运算"><a href="#简单运算" class="headerlink" title="简单运算"></a>简单运算</h2><p>拉丁字母、阿拉伯数字和 +-*&#x2F;&#x3D; 运算符均可以直接输入获得，命令\cdot表示乘法的圆点，命令\neq表示不等号，命令\equiv表示恒等于，命令\bmod表示取模</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ x+2-3*4/6=4/y + x\cdot y $$<br></code></pre></td></tr></table></figure>
 
-<h2 id="安装zsh-oh-my-zsh"><a href="#安装zsh-oh-my-zsh" class="headerlink" title="安装zsh  oh-my-zsh"></a>安装zsh  oh-my-zsh</h2><h3 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo apt-get install zsh<br>chsh -s /bin/zsh #将zsh替换为你的默认shell<br></code></pre></td></tr></table></figure>
+<p>$$ x+2-3*4&#x2F;6&#x3D;4&#x2F;y + x\cdot y $$</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ 0 \neq 1 \quad x \equiv x \quad 1 = 9 \bmod 2 $$<br></code></pre></td></tr></table></figure>
 
-<h3 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh-my-zsh"></a>安装oh-my-zsh</h3><table>
-<thead>
-<tr>
-<th>方式</th>
-<th align="center">命令</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>curl</strong></td>
-<td align="center">sh -c “$(curl -fsSL <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;">https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</a></td>
-</tr>
-<tr>
-<td><strong>wget</strong></td>
-<td align="center">sh -c “$(wget -O- <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;">https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</a></td>
-</tr>
-<tr>
-<td><strong>fetch</strong></td>
-<td align="center">sh -c “$(fetch -o - <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;">https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</a></td>
-</tr>
-</tbody></table>
-<p>选择一种即可</p>
-<h3 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo vim ~/.zshrc<br></code></pre></td></tr></table></figure>
+<p>$$ 0 \neq 1 \quad x \equiv x \quad 1 &#x3D; 9 \bmod 2 $$</p>
+<h2 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h2><p>语法_表示下标、^表示上标，但上下标内容不止一个字符时，需用大括号括起来。单引号’表示求导</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ a_&#123;ij&#125;^&#123;2&#125; + b^3_&#123;2&#125;=x^&#123;t&#125; + y&#x27; + x&#x27;&#x27;_&#123;12&#125; $$<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419192005618.png" srcset="/img/loading.gif" lazyload alt="图2"></p>
-<p>例如配置成</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">ZSH_THEME=&quot;xiong-chiamiov-plus&quot;  #有些主题需要下载<br></code></pre></td></tr></table></figure>
+<p>$$ a_{ij}^{2} + b^3_{2}&#x3D;x^{t} + y’ + x’’_{12} $$</p>
+<h2 id="根号、分式"><a href="#根号、分式" class="headerlink" title="根号、分式"></a>根号、分式</h2><p>命令：\sqrt表示平方根，\sqrt[n]表示n次方根，\frac表示分式</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\sqrt&#123;x&#125; + \sqrt&#123;x^&#123;2&#125;+\sqrt&#123;y&#125;&#125; = \sqrt[3]&#123;k_&#123;i&#125;&#125; - \frac&#123;x&#125;&#123;m&#125;$$<br></code></pre></td></tr></table></figure>
 
-<h3 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h3><p>添加代码高亮与自动补全</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd ~/.oh-my-zsh/custom/plugins/<br>git clone https://github.com/zsh-users/zsh-autosuggestions.git #自动补全<br>git clone https://github.com/zsh-users/zsh-syntax-highlighting.git #代码高亮<br></code></pre></td></tr></table></figure>
+<p>$$\sqrt{x} + \sqrt{x^{2}+\sqrt{y}} &#x3D; \sqrt[3]{k_{i}} - \frac{x}{m}$$</p>
+<h2 id="上下标记"><a href="#上下标记" class="headerlink" title="上下标记"></a>上下标记</h2><p>命令：\overline, \underline 分别在表达式上、下方画出水平线</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\overline&#123;x+y&#125; \qquad \underline&#123;a+b&#125;$$<br></code></pre></td></tr></table></figure>
 
-<p>然后将这两个插件添加到【~&#x2F;.zshrc】中</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">zsh-<span class="hljs-built_in">auto</span>suggestions zsh-syntax-highlighting<br></code></pre></td></tr></table></figure>
+<p>$$\overline{x+y} \qquad \underline{a+b}$$</p>
+<p>命令：\overbrace, \underbrace 分别在表达式上、下方给出一个水平的大括号</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\overbrace&#123;1+2+\cdots+n&#125;^&#123;n个&#125; \qquad \underbrace&#123;a+b+\cdots+z&#125;_&#123;26&#125;$$<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/7ff79bb522de4430a7b107f8a86ff867.png" srcset="/img/loading.gif" lazyload alt="图3"></p>
-<h2 id="设置命令解释器-安装完zsh再改"><a href="#设置命令解释器-安装完zsh再改" class="headerlink" title="设置命令解释器(安装完zsh再改)"></a>设置命令解释器(安装完zsh再改)</h2><p>sudo vim &#x2F;etc&#x2F;passwd<br>将文件拉倒最后修改解释器类型</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220419191608991.png" srcset="/img/loading.gif" lazyload alt="图4"></p>
+<p>$$\overbrace{1+2+\cdots+n}^{n个} \qquad \underbrace{a+b+\cdots+z}_{26}$$</p>
+<h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p>命令：\vec表示向量，\overrightarrow表示箭头向右的向量，\overleftarrow表示箭头向左的向量</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\vec&#123;a&#125; + \overrightarrow&#123;AB&#125; + \overleftarrow&#123;DE&#125;$$<br></code></pre></td></tr></table></figure>
+
+<p>$$\vec{a} + \overrightarrow{AB} + \overleftarrow{DE}$$</p>
+<h2 id="积分、极限、求和、乘积"><a href="#积分、极限、求和、乘积" class="headerlink" title="积分、极限、求和、乘积"></a>积分、极限、求和、乘积</h2><p>命令：\int表示积分，\lim表示极限， \sum表示求和，\prod表示乘积，^、_表示上、下限</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$  \lim_&#123;x \to \infty&#125; x^2_&#123;22&#125; - \int_&#123;1&#125;^&#123;5&#125;x\mathrm&#123;d&#125;x + \sum_&#123;n=1&#125;^&#123;20&#125; n^&#123;2&#125; = \prod_&#123;j=1&#125;^&#123;3&#125; y_&#123;j&#125;  + \lim_&#123;x \to -2&#125; \frac&#123;x-2&#125;&#123;x&#125; $$<br></code></pre></td></tr></table></figure>
+
+<p>$$  \lim_{x \to \infty} x^2_{22} - \int_{1}^{5}x\mathrm{d}x + \sum_{n&#x3D;1}^{20} n^{2} &#x3D; \prod_{j&#x3D;1}^{3} y_{j}  + \lim_{x \to -2} \frac{x-2}{x} $$</p>
+<h2 id="三圆点"><a href="#三圆点" class="headerlink" title="三圆点"></a>三圆点</h2><p>命令：\ldots点位于基线上，\cdots点设置为居中，\vdots使其垂直，\ddots对角线排列</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ x_&#123;1&#125;,x_&#123;2&#125;,\ldots,x_&#123;5&#125;  \quad x_&#123;1&#125; + x_&#123;2&#125; + \cdots + x_&#123;n&#125; $$<br></code></pre></td></tr></table></figure>
+
+<p>$$ x_{1},x_{2},\ldots,x_{5}  \quad x_{1} + x_{2} + \cdots + x_{n} $$</p>
+<h2 id="重音符号"><a href="#重音符号" class="headerlink" title="重音符号"></a>重音符号</h2><p>常用命令如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$ \hat&#123;x&#125; $<br></code></pre></td></tr></table></figure>
+
+<p>$ \hat{x} $</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$ \bar&#123;x&#125; $<br></code></pre></td></tr></table></figure>
+
+<p>$ \bar{x} $</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$ \tilde&#123;x&#125; $<br></code></pre></td></tr></table></figure>
+
+<p>$ \tilde{x} $</p>
+<h2 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h2><p>其采用矩阵环境实现矩阵排列，常用的矩阵环境有matrix、bmatrix、vmatrix、pmatrix，其区别为在于外面的括号不同：</p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-684e48900e810dff360c23b4ffe99680_r.jpg" srcset="/img/loading.gif" lazyload alt="矩阵"></p>
+<p>列代码中，&amp;用于分隔列，\用于分隔行</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\begin&#123;bmatrix&#125;<br>1 &amp; 2 &amp; \cdots \\<br>67 &amp; 95 &amp; \cdots \\<br>\vdots  &amp; \vdots &amp; \ddots \\<br>\end&#123;bmatrix&#125;$$<br></code></pre></td></tr></table></figure>
+
+<p>$$\begin{bmatrix}<br>1 &amp; 2 &amp; \cdots \<br>67 &amp; 95 &amp; \cdots \<br>\vdots  &amp; \vdots &amp; \ddots \<br>\end{bmatrix}$$</p>
+<h2 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h2><p>希腊字母无法直接通过美式键盘输入获得。在LaTeX中通过反斜杠\加上其字母读音实现，将读音首字母大写即可输入其大写形式，详见下表</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ \alpha^&#123;2&#125; + \beta = \Theta  $$<br></code></pre></td></tr></table></figure>
+
+<p>$$ \alpha^{2} + \beta &#x3D; \Theta  $$</p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-da3e717cf670582fbfbdddee33073524_r.jpg" srcset="/img/loading.gif" lazyload alt="希腊字符"></p>
+<h2 id="多行公式"><a href="#多行公式" class="headerlink" title="多行公式"></a>多行公式</h2><h2 id="公式组合"><a href="#公式组合" class="headerlink" title="公式组合"></a>公式组合</h2><p>通过cases环境实现公式的组合，&amp;分隔公式和条件，还可以通过\limits来让x→0位于lim的正下方而非默认在lim符号的右下方显示</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">$$D(x) = \begin&#123;cases&#125;<br>\lim\limits_&#123;x \to 0&#125; \frac&#123;a^x&#125;&#123;b+c&#125;, &amp; x&lt;3 \\<br>\pi, &amp; x=3 \\<br>\int_a^&#123;3b&#125;x_&#123;ij&#125;+e^2 \mathrm&#123;d&#125;x,&amp; x&gt;3 \\<br>\end&#123;cases&#125;$$<br></code></pre></td></tr></table></figure>
+
+<p>$$D(x) &#x3D; \begin{cases}<br>\lim\limits_{x \to 0} \frac{a^x}{b+c}, &amp; x&lt;3 \<br>\pi, &amp; x&#x3D;3 \<br>\int_a^{3b}x_{ij}+e^2 \mathrm{d}x,&amp; x&gt;3 \<br>\end{cases}$$</p>
+<h2 id="拆分单个公式"><a href="#拆分单个公式" class="headerlink" title="拆分单个公式"></a>拆分单个公式</h2><p>通过split环境实现公式拆分</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\begin&#123;split&#125;<br>\cos 2x &amp;= \cos^2x - \sin^2x \\<br>&amp;=2\cos^2x-1<br>\end&#123;split&#125;$$<br></code></pre></td></tr></table></figure>
+
+<p>$$\begin{split}<br>\cos 2x &amp;&#x3D; \cos^2x - \sin^2x \<br>&amp;&#x3D;2\cos^2x-1<br>\end{split}$$</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$ Y \in R^&#123;\frac&#123;H&#125;&#123;2&#125;\times\frac&#123;W&#125;&#123;2&#125;\times C&#125;$<br></code></pre></td></tr></table></figure>
+
+<p>$ Y \in R^{\frac{H}{2}\times\frac{W}{2}\times C}$</p>
+<h2 id="Transformer-常用公式"><a href="#Transformer-常用公式" class="headerlink" title="Transformer 常用公式"></a>Transformer 常用公式</h2><p>$$ Attention(Q,K,V) &#x3D; Softmax(\frac{QK^T}{\sqrt{d_{head}}})V$$</p>
 
             </div>
             <hr>
@@ -303,7 +327,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
+                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/">工具类</a>
                     
                   </div>
                 
@@ -311,7 +335,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/Linux%E6%96%B0%E5%BB%BA%E7%94%A8%E6%88%B7/">Linux新建用户</a>
+                      <a class="hover-with-bg" href="/tags/%E5%85%AC%E5%BC%8F/">公式</a>
                     
                   </div>
                 
@@ -328,9 +352,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/25/SpringBoot(%E4%B8%80)/">
+                      <a href="/2022/05/06/PyramidTNT/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SpringBoot(一)</span>
+                        <span class="hidden-mobile">PyramidTNT</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -338,8 +362,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/19/PaddleDetection(%E4%BA%8C)/">
-                        <span class="hidden-mobile">PaddleDetection(二)</span>
+                      <a href="/2022/05/05/TNT/">
+                        <span class="hidden-mobile">TNT</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

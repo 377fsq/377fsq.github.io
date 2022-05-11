@@ -16,21 +16,24 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="PaddleDetection（一）安装 亲测有效  环境准备Linux 18.04  cuda10.1  python3.6 安装说明 安装PaddlePaddle  12# CUDA10.1python -m pip install paddlepaddle-gpu&#x3D;&#x3D;2.2.0.post101 -f https:&#x2F;&#x2F;www.paddlepaddle.org.cn&#x2F;whl&#x2F;linux&#x2F;mkl&#x2F;">
+    <meta name="description" content="PyramidTNT 回顾TNT:Transformer in Transformer动机 Transformer 需要的是序列 (Sequence)的输入信号，而我们有的是 image 这种 2D 的输入信号，那直接把图片分块以后进行 Flatten 操作是一种很直觉的处理方式。但是，这种intuitive的方法能不能够完美地建模图像，因为我们缺少了一部分非常重要的信息，即：每个patch的内部">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PaddleDetection(一)">
-<meta property="og:url" content="http://example.com/2022/04/19/PaddleDetection(%E4%B8%80)/index.html">
+<meta property="og:title" content="PyramidTNT">
+<meta property="og:url" content="http://example.com/2022/05/06/PyramidTNT/index.html">
 <meta property="og:site_name" content="方小七">
-<meta property="og:description" content="PaddleDetection（一）安装 亲测有效  环境准备Linux 18.04  cuda10.1  python3.6 安装说明 安装PaddlePaddle  12# CUDA10.1python -m pip install paddlepaddle-gpu&#x3D;&#x3D;2.2.0.post101 -f https:&#x2F;&#x2F;www.paddlepaddle.org.cn&#x2F;whl&#x2F;linux&#x2F;mkl&#x2F;">
+<meta property="og:description" content="PyramidTNT 回顾TNT:Transformer in Transformer动机 Transformer 需要的是序列 (Sequence)的输入信号，而我们有的是 image 这种 2D 的输入信号，那直接把图片分块以后进行 Flatten 操作是一种很直觉的处理方式。但是，这种intuitive的方法能不能够完美地建模图像，因为我们缺少了一部分非常重要的信息，即：每个patch的内部">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-19T06:42:33.000Z">
-<meta property="article:modified_time" content="2022-05-05T13:34:57.517Z">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-80d654c25d1cd58ebe1c79e7938972c4_720w.jpg">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-6991f91c12d2ba4e6b6992f4c1d93223_720w.jpg">
+<meta property="article:published_time" content="2022-05-06T02:57:23.000Z">
+<meta property="article:modified_time" content="2022-05-06T08:08:09.976Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="安装教程">
+<meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-80d654c25d1cd58ebe1c79e7938972c4_720w.jpg">
   
   
-  <title>PaddleDetection(一) - 方小七</title>
+  <title>PyramidTNT - 方小七</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +179,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="PaddleDetection(一)">
+            <span class="h2" id="subtitle" title="PyramidTNT">
               
             </span>
 
@@ -186,8 +189,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-04-19 14:42" pubdate>
-        2022年4月19日 下午
+      <time datetime="2022-05-06 10:57" pubdate>
+        2022年5月6日 上午
       </time>
     </span>
   
@@ -197,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      2.6k 字
     </span>
   
 
@@ -206,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9 分钟
+      22 分钟
     </span>
   
 
@@ -235,33 +238,36 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">PaddleDetection(一)</h1>
+            <h1 style="display: none">PyramidTNT</h1>
             
             <div class="markdown-body">
-              <h1 id="PaddleDetection（一）"><a href="#PaddleDetection（一）" class="headerlink" title="PaddleDetection（一）"></a>PaddleDetection（一）</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
-<p>亲测有效</p>
+              <h1 id="PyramidTNT"><a href="#PyramidTNT" class="headerlink" title="PyramidTNT"></a><strong>PyramidTNT</strong></h1><blockquote>
+<p>回顾TNT:Transformer in Transformer动机</p>
+<p>Transformer 需要的是序列 (Sequence)的输入信号，而我们有的是 image 这种 2D 的输入信号，那<strong>直接把图片分块以后进行 Flatten 操作</strong>是一种很直觉的处理方式。但是，这种intuitive的方法能不能够完美地建模图像，因为我们缺少了一部分非常重要的信息，即：<strong>每个patch的内部信息</strong>。</p>
+<p>TNT 认为，每个输入的内部信息，即每个 patch 的内部信息，没有被 Transformer 所建模。是一个欠考虑的因素。所以 TNT 使得 Transformer 模型既建模那些不同 patch 之间的关系，也要***建模每个 patch 内部的关系***。</p>
 </blockquote>
-<h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><p>Linux 18.04 </p>
-<p>cuda10.1 </p>
-<p>python3.6</p>
-<h3 id="安装说明"><a href="#安装说明" class="headerlink" title="安装说明"></a>安装说明</h3><ol>
-<li><p>安装PaddlePaddle</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></div></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># CUDA10.1</span><br>python -m pip install paddlepaddle-gpu==2.2.0.post101 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html<br></code></pre></td></tr></table></figure>
-
-<p> 使用以下命令进行验证</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 在您的Python解释器中确认PaddlePaddle安装成功</span><br>&gt;&gt;&gt; import paddle<br>&gt;&gt;&gt; paddle.utils.run_check()<br><br><span class="hljs-comment"># 确认PaddlePaddle版本</span><br>python -c <span class="hljs-string">&quot;import paddle; print(paddle.__version__)&quot;</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>安装PaddleDetection</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 克隆PaddleDetection仓库</span><br><span class="hljs-built_in">cd</span> &lt;path/to/clone/PaddleDetection&gt;<br>git <span class="hljs-built_in">clone</span> https://github.com/PaddlePaddle/PaddleDetection.git<br><br><span class="hljs-comment"># 安装其他依赖</span><br><span class="hljs-built_in">cd</span> PaddleDetection<br>pip install -r requirements.txt<br><br><span class="hljs-comment"># 编译安装paddledet</span><br>python setup.py install<br></code></pre></td></tr></table></figure>
-
-<p> 安装后确认测试通过：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python ppdet/modeling/tests/test_architectures.py<br></code></pre></td></tr></table></figure>
-
-<p> 测试通过后会提示如下信息：</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">.......<br>----------------------------------------------------------------------<br>Ran 7 tests <span class="hljs-keyword">in</span> 12.816s<br>OK<br></code></pre></td></tr></table></figure></li>
-</ol>
-<h2 id="快速体验"><a href="#快速体验" class="headerlink" title="快速体验"></a>快速体验</h2><p><strong>恭喜！</strong> 您已经成功安装了PaddleDetection，接下来快速体验目标检测效果</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 在GPU上预测一张图片</span><br><span class="hljs-built_in">export</span> CUDA_VISIBLE_DEVICES=0<br>python tools/infer.py -c configs/ppyolo/ppyolo_r50vd_dcn_1x_coco.yml -o use_gpu=<span class="hljs-literal">true</span> weights=https://paddledet.bj.bcebos.com/models/ppyolo_r50vd_dcn_1x_coco.pdparams --infer_img=demo/000000014439.jpg<br></code></pre></td></tr></table></figure>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-80d654c25d1cd58ebe1c79e7938972c4_720w.jpg" srcset="/img/loading.gif" lazyload alt="图1：Transformer in Transformer"></p>
+<h2 id="Pyramid-TNT-原理分析"><a href="#Pyramid-TNT-原理分析" class="headerlink" title="Pyramid TNT 原理分析"></a><strong>Pyramid TNT 原理分析</strong></h2><h3 id="1-动机"><a href="#1-动机" class="headerlink" title="1.动机"></a>1.动机</h3><p>TNT 作为一种通用的视觉任务 Backbone，取得了优异的性能。Pyramid TNT 受到 Transformer 模型两种主流改进方法：<strong>金字塔架构 (PVT，Swin Transformer，CycleMLP 等等)</strong> 和<strong>卷积 stem (Convolutional Stem)</strong> 的启发，改进了 TNT 架构。</p>
+<p>Pyramid TNT 将它们融入 TNT 中，金字塔架构 (Pyramid Structure) 用于<strong>提取多尺度信息</strong>，卷积 stem (Convolutional Stem) 用于<strong>改善图片分块的方法和使得训练过程更加稳定</strong>。此外，Pyramid TNT 还包括其他一些 trick 比如相对位置编码等。</p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-6991f91c12d2ba4e6b6992f4c1d93223_720w.jpg" srcset="/img/loading.gif" lazyload alt="图2：Pyramid TNT"></p>
+<h3 id="2-Convolutional-Stem"><a href="#2-Convolutional-Stem" class="headerlink" title="2. Convolutional Stem"></a>2. <strong>Convolutional Stem</strong></h3><p>给定输入图片$ X \in R^{H\times W}$，ViT 的做法是通过一个stride&#x3D;kernel&#x3D;patch size的俊基进行图片的分块操作。<strong>Early convolutions help transformers see better (NeurIPS 2021)</strong> 这篇论文发现：将这个卷积操作替换成几个连续的卷积操作能够使得 Transformer 模型获得更好的性能，且对优化器更加鲁棒，增加了优化稳定性。基于这个发现，作者也对 TNT 模型应用了 Convolutional Stem。</p>
+<p>具体而言 Pyramid TNT 的 Convolutional Stem 是5个 3×3 卷积。对于 Outer Transformer，Convolutional Stem 将输入图片变成$ Y \in R^{\frac{H}{2}\times\frac{W}{2}\times C}$，式中C是 sentence embedding 维度。对于 Inner Transformer，Convolutional Stem 将输入图片变成$ Y \in R^{\frac{H}{8}\times\frac{W}{8}\times D}$，式中D是word embedding 的维度。对于位置编码，sentence positional encoding 和 word positional encoding 被分别添加在了 sentence embedding 和 word embedding 上。</p>
+<blockquote>
+<p>解释：</p>
+<p>可以想象成outer transformer就是一个个句子</p>
+<p>innner transformer就是每个句子中的一个个单词</p>
+</blockquote>
+<h3 id="3-Pyramid-Architecture"><a href="#3-Pyramid-Architecture" class="headerlink" title="3. Pyramid Architecture"></a>3. <strong>Pyramid Architecture</strong></h3><p><strong>[原始的 TNT 网络]：</strong></p>
+<p>在原始 TNT 中，在每个 Block 中保持相同数量的 tokens，遵循 ViT 的设计方式。视觉 “sentence” 和视觉 “words” 的数量自下而上一直保持不变。【假设H&#x3D;W&#x3D;224】</p>
+<p>视觉 “sentence” 的特征图分辨率自下而上<strong>一直</strong>是$ \frac{H}{p}\times\frac{W}{p}&#x3D; \frac{H}{16}\times\frac{W}{16}&#x3D;14\times14$</p>
+<p>视觉 “words” 的特征图分辨率自下而上<strong>一直</strong>是$\frac{p}{4}\times\frac{4}{4}&#x3D;4\times4 $</p>
+<p><strong>[Pyramid TNT 网络]：</strong></p>
+<p>在 Pyramid TNT 中，网络在每个 stage 中保持不同数量的 tokens，遵循 PVT 的设计方式。视觉 “sentence” 和视觉 “words” 的数量自下而上分阶段变化。</p>
+<p>视觉 “words” 的特征图分辨率在4个 stage 中分别是：$\frac{H}{2}\times\frac{W}{2}，\frac{H}{4}\times\frac{W}{4}，\frac{H}{8}\times\frac{W}{8}，\frac{H}{16}\times\frac{W}{16}$。</p>
+<p>视觉 “sentence” 的特征图分辨率在4个 stage 中分别是：$\frac{H}{8}\times\frac{W}{8}，\frac{H}{16}\times\frac{W}{16}，\frac{H}{32}\times\frac{W}{32}，\frac{H}{64}\times\frac{W}{64}$。</p>
+<p>通过 Convolution Stem，把 <strong>224×224 的输入图片</strong>分成 <strong>8×8（大patch分辨率） 的大 patch</strong>，一共是 28×28 （个数）个。所以 Outer Transformer 特征图的分辨率是：$ H_{out}\times W_{out}&#x3D;28\times28&#x3D;\frac {H}{8}\times\frac {W}{8}$</p>
+<p>通过 Convolution Stem，把 <strong>8×8 的大 patch</strong> 分成 <strong>2×2(小patch分辨率) 的小 patch</strong>，一共是 4×4×28×28(个数) 个。所以 Inner Transformer 特征图的分辨率是：$ H_{in}\times W_{in}\times H_{out}\times W_{out}&#x3D;4\times4\times28\times28&#x3D;\frac {H}{2}\times\frac {W}{2}$</p>
+<p>不同 stage 之间通过一个stride &#x3D; 2的卷积操作降低特征分辨率。注意不同的 stage 的 <strong>Outer Transformer</strong>，即<strong>视觉 “sentence” 的特征图分辨率</strong> $ H_{out}\times W_{out}$ 是大小一直变化的，而不同的 stage 的 <strong>Inner Transformer</strong>，<strong>视觉 “words” 的特征图分辨率</strong>一直是 $ 4\times4\times H_{out}\times W_{out}$ </p>
 
             </div>
             <hr>
@@ -271,7 +277,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%AE%89%E8%A3%85/">安装</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
                     
                   </div>
                 
@@ -279,7 +285,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">安装教程</a>
+                      <a class="hover-with-bg" href="/tags/Transformer/">Transformer</a>
                     
                   </div>
                 
@@ -296,9 +302,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/04/19/PaddleDetection(%E4%BA%8C)/">
+                      <a href="/2022/05/09/PVT/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">PaddleDetection(二)</span>
+                        <span class="hidden-mobile">PVT</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -306,8 +312,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/15/Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
-                        <span class="hidden-mobile">Hexo+Github搭建个人博客</span>
+                      <a href="/2022/05/05/%E5%85%AC%E5%BC%8F%E5%A4%A7%E5%85%A8/">
+                        <span class="hidden-mobile">公式大全</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -317,6 +323,35 @@
               
             </div>
 
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"ezAjSCt600hHMv0BReBYtgEg-gzGzoHsz","appKey":"ED6lqUmM45dvAhwFci9k1ioL","path":"window.location.pathname","placeholder":"欢迎留言呀~","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"enable":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
             
           </article>
         </div>

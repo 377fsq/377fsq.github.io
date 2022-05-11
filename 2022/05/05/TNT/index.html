@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210953860.png">
 <meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505211052159.png">
 <meta property="article:published_time" content="2022-05-05T07:44:23.000Z">
-<meta property="article:modified_time" content="2022-05-05T13:16:39.243Z">
+<meta property="article:modified_time" content="2022-05-06T01:59:41.688Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
@@ -279,17 +279,17 @@
 <p>所以我们认为，<strong>每个输入的内部信息，即每个patch的内部信息，没有被Transformer所建模。</strong>是一个欠考虑的因素。</p>
 <p>:information_desk_person:<strong>所以本文的动机是：使得Transformer模型既建模那些不同patch之间的关系，也要建模每个patch内部的关系。</strong></p>
 <h2 id="TNT设计"><a href="#TNT设计" class="headerlink" title="TNT设计"></a>TNT设计</h2><ol>
-<li><p>作者这里设计了一种Transformer in Transformer (TNT)的结构，第1步还是将输入图片划分成 n个块(patch)：<img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505160726207.png" srcset="/img/loading.gif" lazyload alt="image-20220505160726207"></p>
+<li><p>作者这里设计了一种Transformer in Transformer (TNT)的结构，第1步还是将输入图片划分成 n个块(patch)：<img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505160726207.png" srcset="/img/loading.gif" lazyload alt="公式1"></p>
 <p> 式中p是每个块的大小。ViT，DeiT，IPT，SETR，ViT-FRCNN到这里就把它们输入Transformer了，本文为了更好地学习图片中global和local信息的关系，<strong>还要再进行一步</strong></p>
 </li>
 <li><p>接下来再把每个patch通过PyTorch的unfold操作<strong>划分成更小的patch</strong>，之后把这些小patch展平，就得到了</p>
-<p> <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505160925364.png" srcset="/img/loading.gif" lazyload alt="image-20220505160925364"></p>
+<p> <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505160925364.png" srcset="/img/loading.gif" lazyload alt="公式2"></p>
 <p> 其中，Y^i_{0}代表的物理意义是第0个layer的第i个大patch包含的所有小patch，c是通道数。理解为：原图是Y_0,分成n个大patch，每个大patch可以看作是由很多p’*p’的小patch组成的。</p>
-<p> 例如，大patch的大小是 16x16x3 ，这里p&#x3D;16，那么小patch的大小是8x8x3 。每个大patch被分成了4个小patch,即Y^i_{0}\in R 8x8x12,相当于是4个小patch。</p>
+<p> 例如，大patch的大小是 16x16x3 ，这里p&#x3D;16，那么小patch的大小是8x8x3 。每个大patch被分成了4个小patch,即$Y^i_{0}\in R^{8<em>8</em>12}$,相当于是4个小patch。</p>
 </li>
 <li><p>接下来作者把这一堆小patch视为一个pixel embedding：</p>
-<p> <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505162042262.png" srcset="/img/loading.gif" lazyload alt="image-20220505162042262"></p>
-<p> 这个pixel embedding由m &#x3D; p’^2个向量组成</p>
+<p> <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505162042262.png" srcset="/img/loading.gif" lazyload alt="公式3"></p>
+<p> 这个pixel embedding由$ m &#x3D; p’^2$个向量组成</p>
 <p> 如下图所示，输入是一个大patch，<strong>输出的黄色大长条是这个patch展平以后的patch embedding，输出的彩色小长条是这个patch划分成更小的patch之后再展平以后的pixel embedding</strong>。</p>
 <p> <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-e3289b761f44c4a79af39800d2f2bd7d_720w.jpg" srcset="/img/loading.gif" lazyload alt="对patch进行unfold操作后得到更小的patch"></p>
 </li>
@@ -298,7 +298,7 @@
 <li><strong>Outer block 建模 patch embedding 之间的 global relationship。</strong></li>
 <li><strong>Inner block 建模 pixel embedding 之间的 local structure information。</strong></li>
 </ul>
-<p> <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-b7ac4d52e1e18b7620f3613e7b4b78d6_720w.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p> <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-b7ac4d52e1e18b7620f3613e7b4b78d6_720w.jpg" srcset="/img/loading.gif" lazyload alt="架构图"></p>
 <p> 这两种Block对应2个不同的数据流，其中 Outer block 的数据流在不同patch之间运行，而 Inner block 的数据流在每个patch内部运行。</p>
 </li>
 </ol>
@@ -309,32 +309,32 @@
 <p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505164238171.png" srcset="/img/loading.gif" lazyload alt="Inner Transformer的第l个layer"></p>
 <p>Inner Transformer 建模的是更细小的像素级别的relationship，例如，在一张人脸中，属于眼睛的像素与眼睛的其他像素更相关，而与前额像素的relationship较少。</p>
 <h2 id="Outer-Transformer"><a href="#Outer-Transformer" class="headerlink" title="Outer Transformer"></a><strong>Outer Transformer</strong></h2><p>就相当于是ViT中的Transformer，它建模的是更大的patch级别的relationship，输入的patch embedding使用ViT类似的做法,添加class token Z_{class}，他们初始化为0</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505190846135.png" srcset="/img/loading.gif" lazyload alt="image-20220505190846135"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505190846135.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p>则Outer Transformer的表达式为：</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505190919223.png" srcset="/img/loading.gif" lazyload alt="image-20220505190919223"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505190919223.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p>Z^i_{l}表示为第l个layer的第i个向量</p>
 <p>有Outer Transformer的第l个layer的输出向量</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505203741184.png" srcset="/img/loading.gif" lazyload alt="image-20220505203741184"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505203741184.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <blockquote>
 <p><strong>要如何把它们结合起来，以融合global和local的信息呢？</strong></p>
 </blockquote>
 <h2 id="融合global和local信息"><a href="#融合global和local信息" class="headerlink" title="融合global和local信息"></a><strong>融合global和local信息</strong></h2><p>作者采用</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505203851282.png" srcset="/img/loading.gif" lazyload alt="image-20220505203851282"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505203851282.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p>我i中Vec(.)代表Flatten操作，W、b代表权重</p>
 <p>通过这种方式，把第l个layer的第i个patch embedding向量和第i个pixel embedding向量融合起来</p>
 <p>总的来说，TNT Block第l个layer的输入和输出可以表示为：</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505204922528.png" srcset="/img/loading.gif" lazyload alt="image-20220505204922528"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505204922528.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p>在TNT Block中，Inner Transformer建模 pixel embedding 之间的 local structure information之间的关系，而Outer block 建模 patch embedding 之间的 global relationship。通过将TNT Block堆叠L次，作者构建了Transformer in Transformer。最后，使用一个分类头对图像进行分类。</p>
 <h2 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a>位置编码</h2><p>位置编码的作用是让像素间保持空间位置关系，对于图像就是保持二维信息，它对于图像识别任务来讲很重要。具体来说，就需要对patch embedding和pixel embedding分别设计一种位置编码。</p>
 <ul>
 <li><p>patch positional encoding：</p>
 <p>  作者这里使用的是可学习的1D位置编码：</p>
-<p>  <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505205514039.png" srcset="/img/loading.gif" lazyload alt="image-20220505205514039"></p>
+<p>  <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505205514039.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p>  式中，E_{patch}是给patch embedding使用的位置编码，它用来编码全局空间信息 (global spatial information)。</p>
 </li>
 <li><p>pixel positional encoding：</p>
 <p>  作者这里使用的是可学习的1D位置编码：</p>
-<p>  <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505205620770.png" srcset="/img/loading.gif" lazyload alt="image-20220505205620770"></p>
+<p>  <img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505205620770.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p>  式中，E_{pixel}是给pixel embedding使用的位置编码。我们发现这n个patch中的pixel positional encoding是一样的，它们用来编码局部相对信息 (local relative information)。</p>
 </li>
 </ul>
@@ -342,15 +342,15 @@
 <p>一个标准的Transformer Block的结构包括multi-head self-attention (MSA) 和 multi-layer</p>
 <p>perceptron (MLP)。</p>
 <p><strong>MSA的计算复杂度是：</strong></p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210052622.png" srcset="/img/loading.gif" lazyload alt="image-20220505210052622"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210052622.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-6a3b632b76d8516eb78c01dc54250059_r.jpg" srcset="/img/loading.gif" lazyload alt="MSA的计算复杂度"></p>
 <p><strong>MLP的计算复杂度是：</strong></p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210135894.png" srcset="/img/loading.gif" lazyload alt="image-20220505210135894"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210135894.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p>式中，r是expansion ratio。</p>
 <p><strong>所以一个标准的Transformer Block的计算复杂度是：</strong></p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210214538.png" srcset="/img/loading.gif" lazyload alt="image-20220505210214538"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210214538.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p>r经常设置为4，且 dk和dv一般是相等的，所以：</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210252055.png" srcset="/img/loading.gif" lazyload alt="image-20220505210252055"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210252055.png" srcset="/img/loading.gif" lazyload alt="公式"></p>
 <p><strong>一个标准的Transformer Block的参数量为：12dd</strong></p>
 <p><strong>计算复杂度分析，TNT Block的结构：</strong></p>
 <p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210331634.png" srcset="/img/loading.gif" lazyload alt="复杂度计算"></p>
@@ -360,7 +360,7 @@
 <p>比如在ViT-B&#x2F;16 configuration中，设置：</p>
 <p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210922314.png" srcset="/img/loading.gif" lazyload alt="举例"></p>
 <p>则：</p>
-<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210953860.png" srcset="/img/loading.gif" lazyload alt="举例子"></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210953860.png" srcset="/img/loading.gif" lazyload alt="举例"></p>
 <p>增长了大概 1.09倍，同样地，参数量增长了大概1.08倍。通过少量增加计算和内存成本，TNT Block可以有效地模拟局部结构信息，并在准确性和复杂性之间实现更好的平衡，如实验所示。</p>
 <h2 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h2><p>超参数设置为：</p>
 <p>大patch的patch size：16×16，小patch的patch size：4×4，设计了2种不同大小的TNT模型，分别是：TNT-S和TNT-B，模型的参数量大小分别是23.8M和65.6M。计算量分别是5.2B和14.1B。</p>
@@ -399,6 +399,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/05/05/%E5%85%AC%E5%BC%8F%E5%A4%A7%E5%85%A8/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">公式大全</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
