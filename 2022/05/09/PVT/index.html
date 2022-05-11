@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-047ea5da6e5583728b5d9db2a6ce9507_r.jpg">
 <meta property="article:published_time" content="2022-05-09T07:22:03.000Z">
-<meta property="article:modified_time" content="2022-05-11T12:08:07.926Z">
+<meta property="article:modified_time" content="2022-05-11T12:11:38.416Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
@@ -355,21 +355,24 @@ class="math inline">\(\frac{H_iW_i}{R^2_i}\)</span></p>
 系列</strong></li>
 </ul>
 <h2 id="观点">观点</h2>
-<p><strong>1. 为什么PVT在同样参数量下比CNN效果好？</strong>
-我认为有两点1）全局感受野和2）动态权重。</p>
+<ol type="1">
+<li><p><strong>为什么PVT在同样参数量下比CNN效果好？</strong></p>
+<p>我认为有两点1）全局感受野和2）动态权重。</p>
 <p>其实本质上，Multi-Head
 Attention（MHA）和Conv有一些相通的地方。MHA可以大致看作是一个具备全局感受野的，且结果是按照attention
 weight加权平均的卷积。因此Transformer的特征表达能力会更强。</p>
-<p>关于MHA和Conv之间的联系，更多有意思的见解可以拜读下代季峰大佬的<em>An
-Empirical Study of Spatial Attention Mechanisms in Deep Networks</em>。
-<strong>2. 后续可扩展的思路</strong></p>
+<p>关于MHA和Conv之间的联系，更多有意思的见解可以拜读下代季峰大佬的*An
+Empirical Study of Spatial Attention Mechanisms in Deep
+Networks</p></li>
+<li><p><strong>后续可扩展的思路</strong></p>
 <p>1）效率更高的Attention：随着输入图片的增大，PVT消耗资源的增长率要比ResNet要高，所以PVT更适合处理中等输入分辨率的图片（具体见PVT的Ablation
 Study）。所以找到一种效率更高的Attention方案是很重要的。</p>
 <p>2）Position Embedding：PVT的position
 embedding是和ViT一样，都是随机的参数，然后硬学的。而且在改变输入图像的分辨率的时候，position
 embedding还需要通过插值来调整大小。所以我觉得这也是可以改进的地方，找到一种更适合2D图像的方法。</p>
 <p>3）金字塔结构：PVT只是一种较简单的金字塔式Tranformer。中间是通过Patch
-Embedding连接的，或许有更优美的方案。</p>
+Embedding连接的，或许有更优美的方案。</p></li>
+</ol>
 <hr />
 <h1 id="pvtv2"><strong>PVTv2</strong></h1>
 <blockquote>
@@ -410,30 +413,18 @@ c$ 的输出结果。</p></li>
 <li><p>线性空间缩减注意力机制。<strong>为了进一步优化PVT的计算开销，线性空间注意力
 (Spatial Reduction Attention, SRA)
 机制被引入到新的模型中来。</strong>与原始的SRA不同，线性空间注意力机制具有线性的计算复杂度和内存开销，对于输入为hxwxc的特征图，与SRA相比线性SRA的复杂度大大降低：</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195803461.png" srcset="/img/loading.gif" lazyload
-alt="注意力计算对比" />
-<figcaption aria-hidden="true">注意力计算对比</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195803461.png" srcset="/img/loading.gif" lazyload /></p>
 <p>对应的公式如下:</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195842825.png" srcset="/img/loading.gif" lazyload
-alt="计算公式" />
-<figcaption aria-hidden="true">计算公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195842825.png" srcset="/img/loading.gif" lazyload /></p>
 <p>其中，其中R是SRA的空间缩减比例，P是线性SRA中的池化大小，在PVTv2中被设置为7。</p></li>
 </ol>
 <p>通过这三方面的改进，PVTv2不仅可以保证图像和特征图的局域连续性，同时可灵活处理不同尺度的输入信号，还能将计算复杂度控制在线性范围内。</p>
 <p>为了充分探索 PVTv2 的实验性能，下表列出了一系列配置下的 PVTv2
 模型家族，其中S、C、R、P、N、E、L分别代表了重叠片元的步长、输出通道数、SRA的缩减比例、池化大小、注意力头数量、前传网络层的拓展比例、编码器的层数。</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195244849.png" srcset="/img/loading.gif" lazyload
-alt="参数设置表" />
-<figcaption aria-hidden="true">参数设置表</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195244849.png" srcset="/img/loading.gif" lazyload /></p>
 
             </div>
             <hr>
