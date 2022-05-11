@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="方小七">
 <meta property="og:description" content="PVTv1  动机 ViT 的提出是创造性的，但是同时也存在许多可以改进的空间。比如说很难直接将 ViT 应用在一些下游任务，原因是什么？一方面是其存在网络设计的问题，还有一方面原因是其很高的显存占用。 这个工作把金字塔结构引入到Transformer中，使得它可以像ResNet那样无缝接入到各种下游任务中（如：物体检测，语义分割）  一、分析ViT遗留的问题 网络设计的问题">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:/Users/Administrator.DESKTOP-6HGBVRB/Pictures/特征图分辨率的影响.jpg">
+<meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-047ea5da6e5583728b5d9db2a6ce9507_r.jpg">
 <meta property="article:published_time" content="2022-05-09T07:22:03.000Z">
-<meta property="article:modified_time" content="2022-05-11T11:46:52.793Z">
+<meta property="article:modified_time" content="2022-05-11T12:02:23.607Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="c:/Users/Administrator.DESKTOP-6HGBVRB/Pictures/特征图分辨率的影响.jpg">
+<meta name="twitter:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-047ea5da6e5583728b5d9db2a6ce9507_r.jpg">
   
   
   <title>PVT - 方小七</title>
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.1k 字
+      4k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35 分钟
+      34 分钟
     </span>
   
 
@@ -261,7 +261,7 @@ ViT
 <li>越复杂的图片或越复杂的任务，对分辨率的需求就越高，苹果有 2x2
 的分辨率就够了，海鸥则需要 3x3 的分辨率，宫殿就需要 4x4 的分辨率。</li>
 </ul>
-<p><img src="C:\Users\Administrator.DESKTOP-6HGBVRB\Pictures\特征图分辨率的影响.jpg" srcset="/img/loading.gif" lazyload alt="特征图分辨率的影响" style="zoom:50%;" /></p>
+<p><img src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-047ea5da6e5583728b5d9db2a6ce9507_r.jpg" srcset="/img/loading.gif" lazyload alt="特征图分辨率的影响" style="zoom:50%;" /></p>
 <h3 id="显存占用问题"><strong>显存占用问题</strong></h3>
 <p>ViT
 还有一个问题就是显存占用高，碍于显存的问题很难处理高分辨率的输入图片。对于分类任务输入图片
@@ -330,12 +330,6 @@ Encoder。其中切图部分和 ViT 输入端类似，这里主要的创新是 T
 Encoder 里的 Spatial Reduction Attention (SRA)。</p>
 <h3 id="sra">SRA</h3>
 <p>做 SRA 的目的是减少 Attention 的显存占用。</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220509154426277.png" srcset="/img/loading.gif" lazyload
-alt="MHAvsSRA" />
-<figcaption aria-hidden="true">MHAvsSRA</figcaption>
-</figure>
 <p>对于 Multi-head Attention (MHA)， QKV 的维度是 <span
 class="math inline">\((H_{i}W_{i}\times C_{i})\)</span> attention
 计算公式为$ Attention(Q,K,V) = Softmax()V$</p>
@@ -362,12 +356,6 @@ map了。</p>
 大小为<span
 class="math inline">\(H_iW_i\)</span>的原始特征图进行切分，每份都经过一个全连接层，最终输出的特征图大小为<span
 class="math inline">\(\frac{H_iW_i}{R^2_i}\)</span></p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511194209498.png" srcset="/img/loading.gif" lazyload
-alt="PVTv1" />
-<figcaption aria-hidden="true">PVTv1</figcaption>
-</figure>
 <h2 id="实验对比">实验对比</h2>
 <ul>
 <li><strong>分类任务上对比 ViT 没有明显优势</strong></li>
@@ -419,9 +407,9 @@ Transformer 架构，处于探索先驱阶段的 PVTv1 与ViT
 id="从以下三个方面对原有模型进行改进">从以下三个方面对原有模型进行改进</h3>
 <figure>
 <img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220510103323935.png" srcset="/img/loading.gif" lazyload
-alt="PVTv2" />
-<figcaption aria-hidden="true">PVTv2</figcaption>
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195349862.png" srcset="/img/loading.gif" lazyload
+alt="对比" />
+<figcaption aria-hidden="true">对比</figcaption>
 </figure>
 <ol type="1">
 <li><p>重叠片元 (patch) 嵌入编码。在 PVTv2
@@ -436,15 +424,16 @@ c$ 的输出结果。</p></li>
 机制被引入到新的模型中来。</strong>与原始的SRA不同，线性空间注意力机制具有线性的计算复杂度和内存开销，对于输入为hxwxc的特征图，与SRA相比线性SRA的复杂度大大降低：</p>
 <figure>
 <img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220510103400765.png" srcset="/img/loading.gif" lazyload
-alt="对比" />
-<figcaption aria-hidden="true">对比</figcaption>
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195803461.png" srcset="/img/loading.gif" lazyload
+alt="注意力计算对比" />
+<figcaption aria-hidden="true">注意力计算对比</figcaption>
 </figure>
+<p>对应的公式如下:</p>
 <figure>
 <img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220510103503906.png" srcset="/img/loading.gif" lazyload
-alt="复杂度计算公式" />
-<figcaption aria-hidden="true">复杂度计算公式</figcaption>
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195842825.png" srcset="/img/loading.gif" lazyload
+alt="计算公式" />
+<figcaption aria-hidden="true">计算公式</figcaption>
 </figure>
 <p>其中，其中R是SRA的空间缩减比例，P是线性SRA中的池化大小，在PVTv2中被设置为7。</p></li>
 </ol>
@@ -453,10 +442,9 @@ alt="复杂度计算公式" />
 模型家族，其中S、C、R、P、N、E、L分别代表了重叠片元的步长、输出通道数、SRA的缩减比例、池化大小、注意力头数量、前传网络层的拓展比例、编码器的层数。</p>
 <figure>
 <img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220510103537230.png" srcset="/img/loading.gif" lazyload
-alt="Detailed settings of PVTv2 series. “-Li” denotes PVTv2 with linear SRA" />
-<figcaption aria-hidden="true">Detailed settings of PVTv2 series. “-Li”
-denotes PVTv2 with linear SRA</figcaption>
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220511195244849.png" srcset="/img/loading.gif" lazyload
+alt="参数设置表" />
+<figcaption aria-hidden="true">参数设置表</figcaption>
 </figure>
 
             </div>
