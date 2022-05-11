@@ -24,7 +24,7 @@
 <meta property="og:description" content="PyramidTNT  回顾TNT:Transformer in Transformer动机 Transformer 需要的是序列 (Sequence)的输入信号，而我们有的是 image 这种 2D 的输入信号，那直接把图片分块以后进行 Flatten 操作是一种很直觉的处理方式。但是，这种intuitive的方法能不能够完美地建模图像，因为我们缺少了一部分非常重要的信息，即：每个pa">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-06T02:57:23.000Z">
-<meta property="article:modified_time" content="2022-05-11T11:30:05.089Z">
+<meta property="article:modified_time" content="2022-05-11T12:12:56.483Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
@@ -249,13 +249,8 @@ Transformer 所建模。是一个欠考虑的因素。所以 TNT 使得 Transfor
 模型既建模那些不同 patch 之间的关系，也要*<strong>建模每个 patch
 内部的关系*</strong>。</p>
 </blockquote>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-80d654c25d1cd58ebe1c79e7938972c4_720w.jpg" srcset="/img/loading.gif" lazyload
-alt="图1：Transformer in Transformer" />
-<figcaption aria-hidden="true">图1：Transformer in
-Transformer</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-80d654c25d1cd58ebe1c79e7938972c4_720w.jpg" srcset="/img/loading.gif" lazyload /></p>
 <h2 id="pyramid-tnt-原理分析"><strong>Pyramid TNT 原理分析</strong></h2>
 <h3 id="动机">1.动机</h3>
 <p>TNT 作为一种通用的视觉任务 Backbone，取得了优异的性能。Pyramid TNT
@@ -266,12 +261,8 @@ Stem)</strong> 的启发，改进了 TNT 架构。</p>
 用于<strong>提取多尺度信息</strong>，卷积 stem (Convolutional Stem)
 用于<strong>改善图片分块的方法和使得训练过程更加稳定</strong>。此外，Pyramid
 TNT 还包括其他一些 trick 比如相对位置编码等。</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-6991f91c12d2ba4e6b6992f4c1d93223_720w.jpg" srcset="/img/loading.gif" lazyload
-alt="图2：Pyramid TNT" />
-<figcaption aria-hidden="true">图2：Pyramid TNT</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-6991f91c12d2ba4e6b6992f4c1d93223_720w.jpg" srcset="/img/loading.gif" lazyload /></p>
 <h3 id="convolutional-stem">2. <strong>Convolutional Stem</strong></h3>
 <p>给定输入图片$ X R^{HW}$，ViT 的做法是通过一个stride=kernel=patch
 size的俊基进行图片的分块操作。<strong>Early convolutions help

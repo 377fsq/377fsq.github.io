@@ -16,21 +16,20 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="TNT  充分挖掘patch内部信息：Transformer in Transformer：TNT (来自北京华为诺亚方舟实验室)  TNT动机分析 将Transformer应用在图像识别领域的两个经典的工作是：ViT和DeiT DeiT相比于ViT来讲，在训练方式上做出了改进，这使得Transformer在建模patch之间的信息时考虑更多的因素，提升了Transformer模型的">
+    <meta name="description" content="title: TNT date: 2022-05-05 15:44:23 tags: Transformer categories: 论文 TNT  充分挖掘patch内部信息：Transformer in Transformer：TNT (来自北京华为诺亚方舟实验室)  TNT动机分析 将Transformer应用在图像识别领域的两个经典的工作是：ViT和DeiT DeiT相比">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TNT">
+<meta property="og:title" content="方小七">
 <meta property="og:url" content="http://example.com/2022/05/05/TNT/index.html">
 <meta property="og:site_name" content="方小七">
-<meta property="og:description" content="TNT  充分挖掘patch内部信息：Transformer in Transformer：TNT (来自北京华为诺亚方舟实验室)  TNT动机分析 将Transformer应用在图像识别领域的两个经典的工作是：ViT和DeiT DeiT相比于ViT来讲，在训练方式上做出了改进，这使得Transformer在建模patch之间的信息时考虑更多的因素，提升了Transformer模型的">
+<meta property="og:description" content="title: TNT date: 2022-05-05 15:44:23 tags: Transformer categories: 论文 TNT  充分挖掘patch内部信息：Transformer in Transformer：TNT (来自北京华为诺亚方舟实验室)  TNT动机分析 将Transformer应用在图像识别领域的两个经典的工作是：ViT和DeiT DeiT相比">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-05T07:44:23.000Z">
-<meta property="article:modified_time" content="2022-05-11T11:37:19.897Z">
+<meta property="article:published_time" content="2022-05-05T07:44:23.047Z">
+<meta property="article:modified_time" content="2022-05-11T12:13:45.908Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>TNT - 方小七</title>
+  <title>方小七</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +175,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="TNT">
+            <span class="h2" id="subtitle" title="">
               
             </span>
 
@@ -197,7 +196,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.9k 字
+      3.8k 字
     </span>
   
 
@@ -235,10 +234,12 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">TNT</h1>
+            <h1 style="display: none"></h1>
             
             <div class="markdown-body">
-              <h1 id="tnt"><strong>TNT</strong></h1>
+              <p>title: TNT date: 2022-05-05 15:44:23 tags: Transformer categories:
+论文</p>
+<h1 id="tnt"><strong>TNT</strong></h1>
 <blockquote>
 <p><strong>充分挖掘patch内部信息：Transformer in
 Transformer：TNT</strong> (来自北京华为诺亚方舟实验室)</p>
@@ -286,13 +287,8 @@ alt="公式3" />
 <p>如下图所示，输入是一个大patch，<strong>输出的黄色大长条是这个patch展平以后的patch
 embedding，输出的彩色小长条是这个patch划分成更小的patch之后再展平以后的pixel
 embedding</strong>。</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-e3289b761f44c4a79af39800d2f2bd7d_720w.jpg" srcset="/img/loading.gif" lazyload
-alt="对patch进行unfold操作后得到更小的patch" />
-<figcaption
-aria-hidden="true">对patch进行unfold操作后得到更小的patch</figcaption>
-</figure></li>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-e3289b761f44c4a79af39800d2f2bd7d_720w.jpg" srcset="/img/loading.gif" lazyload /></p></li>
 <li><p>接下来把它们送入Transformer的Block里面建模特征，Transformer是由很多TNT
 Blocks组成的，每个TNT Block包含2个Transformer Block，分别是</p>
 <ul>
@@ -301,27 +297,18 @@ relationship。</strong></li>
 <li><strong>Inner block 建模 pixel embedding 之间的 local structure
 information。</strong></li>
 </ul>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-b7ac4d52e1e18b7620f3613e7b4b78d6_720w.jpg" srcset="/img/loading.gif" lazyload
-alt="架构图" />
-<figcaption aria-hidden="true">架构图</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-b7ac4d52e1e18b7620f3613e7b4b78d6_720w.jpg" srcset="/img/loading.gif" lazyload /></p>
 <p>这两种Block对应2个不同的数据流，其中 Outer block
 的数据流在不同patch之间运行，而 Inner block
 的数据流在每个patch内部运行。</p></li>
 </ol>
 <h2 id="inner-transformer"><strong>Inner Transformer</strong></h2>
 <p>定义<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505163621042.png" srcset="/img/loading.gif" lazyload
-alt="n个向量的其中一个" /></p>
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505163621042.png" srcset="/img/loading.gif" lazyload /></p>
 <p>把这个值传入<strong>Inner Transformer</strong> T_{in}，则有</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505163732634.png" srcset="/img/loading.gif" lazyload
-alt="Inner Transformer公式" />
-<figcaption aria-hidden="true">Inner Transformer公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505163732634.png" srcset="/img/loading.gif" lazyload /></p>
 <p>注意正常的Transformer的输入应该是（b,n,d）的张量，b = batchsize，
 n=序列长度， d=代表hidden dimension。不考虑batch
 size这一维，就是一个（n，d）的矩阵，也可以看做是n个d维向量，那么对于Inner
@@ -329,31 +316,18 @@ Transformer来讲，这里的 d=mc。也就是说，Inner
 Transformer的输入是n个mc维的向量。上上式子就表示
 就是这n个向量的其中一个。所以Inner
 Transformer的第l个layer的输出就可以写为：</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505164238171.png" srcset="/img/loading.gif" lazyload
-alt="Inner Transformer的第l个layer" />
-<figcaption aria-hidden="true">Inner
-Transformer的第l个layer</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505164238171.png" srcset="/img/loading.gif" lazyload /></p>
 <p>Inner Transformer
 建模的是更细小的像素级别的relationship，例如，在一张人脸中，属于眼睛的像素与眼睛的其他像素更相关，而与前额像素的relationship较少。</p>
 <h2 id="outer-transformer"><strong>Outer Transformer</strong></h2>
 <p>就相当于是ViT中的Transformer，它建模的是更大的patch级别的relationship，输入的patch
 embedding使用ViT类似的做法,添加class token Z_{class}，他们初始化为0</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505190846135.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505190846135.png" srcset="/img/loading.gif" lazyload /></p>
 <p>则Outer Transformer的表达式为：</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505190919223.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505190919223.png" srcset="/img/loading.gif" lazyload /></p>
 <p>Z^i_{l}表示为第l个layer的第i个向量</p>
 <p>有Outer Transformer的第l个layer的输出向量</p>
 <figure>
@@ -368,22 +342,14 @@ alt="公式" />
 <h2
 id="融合global和local信息"><strong>融合global和local信息</strong></h2>
 <p>作者采用</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505203851282.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505203851282.png" srcset="/img/loading.gif" lazyload /></p>
 <p>我i中Vec(.)代表Flatten操作，W、b代表权重</p>
 <p>通过这种方式，把第l个layer的第i个patch embedding向量和第i个pixel
 embedding向量融合起来</p>
 <p>总的来说，TNT Block第l个layer的输入和输出可以表示为：</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505204922528.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505204922528.png" srcset="/img/loading.gif" lazyload /></p>
 <p>在TNT Block中，Inner Transformer建模 pixel embedding 之间的 local
 structure information之间的关系，而Outer block 建模 patch embedding
 之间的 global relationship。通过将TNT
@@ -395,23 +361,15 @@ embedding和pixel embedding分别设计一种位置编码。</p>
 <ul>
 <li><p>patch positional encoding：</p>
 <p>作者这里使用的是可学习的1D位置编码：</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505205514039.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505205514039.png" srcset="/img/loading.gif" lazyload /></p>
 <p>式中，E_{patch}是给patch
 embedding使用的位置编码，它用来编码全局空间信息 (global spatial
 information)。</p></li>
 <li><p>pixel positional encoding：</p>
 <p>作者这里使用的是可学习的1D位置编码：</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505205620770.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505205620770.png" srcset="/img/loading.gif" lazyload /></p>
 <p>式中，E_{pixel}是给pixel
 embedding使用的位置编码。我们发现这n个patch中的pixel positional
 encoding是一样的，它们用来编码局部相对信息 (local relative
@@ -423,63 +381,31 @@ information)。</p></li>
 和 multi-layer</p>
 <p>perceptron (MLP)。</p>
 <p><strong>MSA的计算复杂度是：</strong></p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210052622.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-6a3b632b76d8516eb78c01dc54250059_r.jpg" srcset="/img/loading.gif" lazyload
-alt="MSA的计算复杂度" />
-<figcaption aria-hidden="true">MSA的计算复杂度</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210052622.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-6a3b632b76d8516eb78c01dc54250059_r.jpg" srcset="/img/loading.gif" lazyload /></p>
 <p><strong>MLP的计算复杂度是：</strong></p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210135894.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210135894.png" srcset="/img/loading.gif" lazyload /></p>
 <p>式中，r是expansion ratio。</p>
 <p><strong>所以一个标准的Transformer Block的计算复杂度是：</strong></p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210214538.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210214538.png" srcset="/img/loading.gif" lazyload /></p>
 <p>r经常设置为4，且 dk和dv一般是相等的，所以：</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210252055.png" srcset="/img/loading.gif" lazyload
-alt="公式" />
-<figcaption aria-hidden="true">公式</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210252055.png" srcset="/img/loading.gif" lazyload /></p>
 <p><strong>一个标准的Transformer Block的参数量为：12dd</strong></p>
 <p><strong>计算复杂度分析，TNT Block的结构：</strong></p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210331634.png" srcset="/img/loading.gif" lazyload
-alt="复杂度计算" />
-<figcaption aria-hidden="true">复杂度计算</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210331634.png" srcset="/img/loading.gif" lazyload /></p>
 <p><strong>一个标准的TNT Block的参数量为：</strong></p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210829784.png" srcset="/img/loading.gif" lazyload
-alt="参数量" />
-<figcaption aria-hidden="true">参数量</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210829784.png" srcset="/img/loading.gif" lazyload /></p>
 <p>看似TNT相比于标准的Transformer结构的计算量和参数量都增加了很多，但是实际上并没有增加多少。因为这里的：c&lt;&lt;d</p>
 <p>比如在ViT-B/16 configuration中，设置：</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210922314.png" srcset="/img/loading.gif" lazyload
-alt="举例" />
-<figcaption aria-hidden="true">举例</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505210922314.png" srcset="/img/loading.gif" lazyload /></p>
 <p>则：</p>
 <figure>
 <img
@@ -494,12 +420,8 @@ Block可以有效地模拟局部结构信息，并在准确性和复杂性之间
 <p>超参数设置为：</p>
 <p>大patch的patch size：16×16，小patch的patch
 size：4×4，设计了2种不同大小的TNT模型，分别是：TNT-S和TNT-B，模型的参数量大小分别是23.8M和65.6M。计算量分别是5.2B和14.1B。</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505211052159.png" srcset="/img/loading.gif" lazyload
-alt="TNT网络结构配置" />
-<figcaption aria-hidden="true">TNT网络结构配置</figcaption>
-</figure>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220505211052159.png" srcset="/img/loading.gif" lazyload /></p>
 <p>作者还使用了SE模块进行channel-wise的attention，具体来讲，把每个patch的d个channel的embedding做平均操作，经过一个2层的MLP得到d个attention
 values。这d个attention会对应地乘在d个channel上面。SE模块的好处是仅仅增大了一点参数但却能通过dimension-wise
 attention实现特征的增强。</p>
@@ -509,20 +431,6 @@ attention实现特征的增强。</p>
             <div>
               <div class="post-metas mb-3">
                 
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87/">论文</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/Transformer/">Transformer</a>
-                    
-                  </div>
                 
               </div>
               
