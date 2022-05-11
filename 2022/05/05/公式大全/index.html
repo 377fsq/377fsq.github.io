@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-684e48900e810dff360c23b4ffe99680_r.jpg">
 <meta property="og:image" content="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-da3e717cf670582fbfbdddee33073524_r.jpg">
 <meta property="article:published_time" content="2022-05-05T13:40:59.000Z">
-<meta property="article:modified_time" content="2022-05-09T05:56:18.359Z">
+<meta property="article:modified_time" content="2022-05-11T11:29:38.762Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="公式">
 <meta name="twitter:card" content="summary_large_image">
@@ -564,6 +564,48 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          load: ['ui/lazy']
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
+
+  
 
 
 
