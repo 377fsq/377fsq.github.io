@@ -24,7 +24,7 @@
 <meta property="og:description" content="ViTDet  视觉领域Transformer骨干  一句话总结 将普通 ViT 主干预训练为MAE，检测器 ViTDet 可以与之前所有基于分层主干的领先方法竞争，仅使用 ImageNet-1K预训练在 COCO上可达到 61.3 box AP！代码将开源！  MAE是使用类似于BERT的掩码机制，从图片中随机抹去一些像素，并让模型通过已知像素去构建未知像素，从而迫使模型学习图">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-12T06:29:06.000Z">
-<meta property="article:modified_time" content="2022-05-11T12:13:51.356Z">
+<meta property="article:modified_time" content="2022-05-13T11:45:36.832Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Transformer">
 <meta name="twitter:card" content="summary_large_image">
@@ -348,13 +348,11 @@ attention,对于给定高分辨率特征图我们将其划分为常规的非重�
 </ol></li>
 </ul>
 <h2 id="五实验">五、实验</h2>
-<p>默认backbone情况是：vit+简单金字塔+全局传播（4个传播块）</p>
-<p>预训练：backbone+MAE无标签在IN-1k上进行预训练</p>
-<h3
-id="实验一证明简单金字塔是有效的">实验一：证明简单金字塔是有效的</h3>
-<p>消融对比试验，baseline是没有金字塔，abc分别对应上面三种图的情况。实验结果表明作者提出的简单金字塔效果最好。</p>
-<h3
-id="实验二证明窗口注意仅需很少的传播块">实验二：证明窗口注意仅需很少的传播块</h3>
+<p>默认backbone情况是：vit+简单金字塔+全局传播（4个传播块）
+预训练：backbone+MAE无标签在IN-1k上进行预训练 ###
+实验一：证明简单金字塔是有效的</p>
+<p>消融对比试验，baseline是没有金字塔，abc分别对应上面三种图的情况。实验结果表明作者提出的简单金字塔效果最好。
+### 实验二：证明窗口注意仅需很少的传播块</p>
 <p>backbone适应消融实验</p>
 <p>(a)不同的跨窗口交互策略：无、4个全局传播块、<strong>4个卷积传播块</strong>、移位窗口</p>
 <p>(b)探究了不同类型的卷积块应用于卷积传播【<strong>basic two
@@ -364,14 +362,12 @@ id="实验二证明窗口注意仅需很少的传播块">实验二：证明窗�
 <h3
 id="实验三comparisons-of-plain-vs.-hierarchical-backbones">实验三：“Comparisons
 of plain vs. hierarchical backbones”</h3>
-<p>金字塔Backbone对比</p>
-<h3
-id="实验四与其他分层结构的backbone比较">实验四：与其他分层结构的backbone比较</h3>
+<p>金字塔Backbone对比 ### 实验四：与其他分层结构的backbone比较</p>
 <h2 id="总结感悟">总结&amp;感悟</h2>
-<p>videt还是想解耦预训练和检测</p>
-<ol type="1">
-<li><p>继承了来自<strong>YOLOF</strong>去掉FPN的思考，这次的<strong>ViTDet</strong>选择了直接暴力抹掉<strong>shift
-window</strong>，一步到位。</p></li>
+<p>videt还是想解耦预训练和检测 1.
+继承了来自<strong>YOLOF</strong>去掉FPN的思考，这次的<strong>ViTDet</strong>选择了直接暴力抹掉<strong>shift
+window</strong>，一步到位。</p>
+<ol start="2" type="1">
 <li><p>训练空间还是挺夸张的，不适合小老百姓的使用。采用MAE来无监督预训练，所以论文看起来简单，但是也只有大厂能烧的起实验。感觉这更多是一种工程化的探索，以及对于MAE的一次推广吧，所以读一读就可，深入研究的话，可能不一定能够跑得起来。</p></li>
 <li><p>关于论文，有点不清不楚，怎么分成子集？平行训练？如果要更改结构预训练权重能否迁移？会不会效果不好？</p></li>
 <li><p>只能说东一个大致更改的位置，但是对于细节不明不白。。。</p></li>

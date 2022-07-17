@@ -16,21 +16,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="LaTeX 公式篇 行内公式 1$ f(x) &#x3D; a+b $ $ f(x) &#x3D; a+b $ 行间公式 1$$ f(x) &#x3D; a+b $$ \[ f(x) &#x3D; a+b \] 手动编号 1$$ f(x) &#x3D; a - b \tag&amp;#123;1.1&amp;#125; $$ \[ f(x) &#x3D; a - b \tag{1.1} \] 简单运算 拉丁字母、阿拉伯数字和 +-*&#x2F;&#x3D; 运算符均可">
+    <meta name="description" content="synchronized详解  synchronized、volatile、Lock详解 synchronized、volatile和lock，其中lock是一个类，而其余两个则是Java关键字。  1.synchronized的简单介绍 synchronized是Java中的关键字，是一种同步锁。是一种重量级锁，因为在获得锁和释放锁的过程中性能消耗很大。 synchronized的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="公式大全">
-<meta property="og:url" content="http://example.com/2022/05/05/%E5%85%AC%E5%BC%8F%E5%A4%A7%E5%85%A8/index.html">
+<meta property="og:title" content="同步锁——synchronized">
+<meta property="og:url" content="http://example.com/2022/05/13/%E5%90%8C%E6%AD%A5%E9%94%81%E2%80%94synchronized/index.html">
 <meta property="og:site_name" content="方小七">
-<meta property="og:description" content="LaTeX 公式篇 行内公式 1$ f(x) &#x3D; a+b $ $ f(x) &#x3D; a+b $ 行间公式 1$$ f(x) &#x3D; a+b $$ \[ f(x) &#x3D; a+b \] 手动编号 1$$ f(x) &#x3D; a - b \tag&amp;#123;1.1&amp;#125; $$ \[ f(x) &#x3D; a - b \tag{1.1} \] 简单运算 拉丁字母、阿拉伯数字和 +-*&#x2F;&#x3D; 运算符均可">
+<meta property="og:description" content="synchronized详解  synchronized、volatile、Lock详解 synchronized、volatile和lock，其中lock是一个类，而其余两个则是Java关键字。  1.synchronized的简单介绍 synchronized是Java中的关键字，是一种同步锁。是一种重量级锁，因为在获得锁和释放锁的过程中性能消耗很大。 synchronized的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-05T13:40:59.000Z">
-<meta property="article:modified_time" content="2022-06-07T06:02:13.399Z">
+<meta property="article:published_time" content="2022-05-13T11:41:13.000Z">
+<meta property="article:modified_time" content="2022-05-14T12:25:54.953Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="公式">
+<meta property="article:tag" content="面试题">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>公式大全 - 方小七</title>
+  <title>同步锁——synchronized - 方小七</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -176,7 +176,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="公式大全">
+            <span class="h2" id="subtitle" title="同步锁——synchronized">
               
             </span>
 
@@ -186,8 +186,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-05-05 21:40" pubdate>
-        2022年5月5日 晚上
+      <time datetime="2022-05-13 19:41" pubdate>
+        2022年5月13日 晚上
       </time>
     </span>
   
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.1k 字
+      2.1k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      26 分钟
+      18 分钟
     </span>
   
 
@@ -235,117 +235,61 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">公式大全</h1>
+            <h1 style="display: none">同步锁——synchronized</h1>
             
             <div class="markdown-body">
-              <h1 id="latex-公式篇">LaTeX 公式篇</h1>
-<h2 id="行内公式"><strong>行内公式</strong></h2>
-<figure class="highlight text"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><pre><code class="hljs text">$ f(x) = a+b $<br></code></pre></td></tr></table></figure>
-<p>$ f(x) = a+b $</p>
-<h2 id="行间公式"><strong>行间公式</strong></h2>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ f(x) = a+b $$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[ f(x) = a+b \]</span></p>
-<h2 id="手动编号"><strong>手动编号</strong></h2>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ f(x) = a - b \tag&#123;1.1&#125; $$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[ f(x) = a - b \tag{1.1} \]</span></p>
-<h2 id="简单运算">简单运算</h2>
-<p>拉丁字母、阿拉伯数字和 +-*/=
-运算符均可以直接输入获得，命令，命令，命令，命令</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ x+2-3*4/6=4/y + x\cdot y $$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[ x+2-3*4/6=4/y + x\cdot y \]</span></p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ 0 \neq 1 \quad x \equiv x \quad 1 = 9 \bmod 2 $$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[ 0 \neq 1 \quad x \equiv x \quad 1 = 9
-\bmod 2 \]</span></p>
-<h2 id="上下标">上下标</h2>
-<p>语法_表示下标、^表示上标，但上下标内容不止一个字符时，需用大括号括起来。单引号'表示求导</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ a_&#123;ij&#125;^&#123;2&#125; + b^3_&#123;2&#125;=x^&#123;t&#125; + y&#x27; + x&#x27;&#x27;_&#123;12&#125; $$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[ a_{ij}^{2} + b^3_{2}=x^{t} + y&#39; +
-x&#39;&#39;_{12} \]</span></p>
-<h2 id="根号分式">根号、分式</h2>
-<p>命令：，表示n次方根，</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\sqrt&#123;x&#125; + \sqrt&#123;x^&#123;2&#125;+\sqrt&#123;y&#125;&#125; = \sqrt[3]&#123;k_&#123;i&#125;&#125; - \frac&#123;x&#125;&#123;m&#125;$$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[\sqrt{x} + \sqrt{x^{2}+\sqrt{y}} =
-\sqrt[3]{k_{i}} - \frac{x}{m}\]</span></p>
-<h2 id="上下标记">上下标记</h2>
-<p>命令：, 别在表达式上、下方画出水平线</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\overline&#123;x+y&#125; \qquad \underline&#123;a+b&#125;$$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[\overline{x+y} \qquad
-\underline{a+b}\]</span></p>
-<p>命令：, 分别在表达式上、下方给出一个水平的大括号</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\overbrace&#123;1+2+\cdots+n&#125;^&#123;n个&#125; \qquad \underbrace&#123;a+b+\cdots+z&#125;_&#123;26&#125;$$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[\overbrace{1+2+\cdots+n}^{n个} \qquad
-\underbrace{a+b+\cdots+z}_{26}\]</span></p>
-<h2 id="向量">向量</h2>
-<p>命令：，，</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\vec&#123;a&#125; + \overrightarrow&#123;AB&#125; + \overleftarrow&#123;DE&#125;$$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[\vec{a} + \overrightarrow{AB} +
-\overleftarrow{DE}\]</span></p>
-<h2 id="积分极限求和乘积">积分、极限、求和、乘积</h2>
-<p>命令：，， ，，^、_表示上、下限</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$  \lim_&#123;x \to \infty&#125; x^2_&#123;22&#125; - \int_&#123;1&#125;^&#123;5&#125;x\mathrm&#123;d&#125;x + \sum_&#123;n=1&#125;^&#123;20&#125; n^&#123;2&#125; = \prod_&#123;j=1&#125;^&#123;3&#125; y_&#123;j&#125;  + \lim_&#123;x \to -2&#125; \frac&#123;x-2&#125;&#123;x&#125; $$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[  \lim_{x \to \infty} x^2_{22} -
-\int_{1}^{5}x\mathrm{d}x + \sum_{n=1}^{20} n^{2} = \prod_{j=1}^{3}
-y_{j}  + \lim_{x \to -2} \frac{x-2}{x} \]</span></p>
-<h2 id="三圆点">三圆点</h2>
-<p>命令：，，，</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ x_&#123;1&#125;,x_&#123;2&#125;,\ldots,x_&#123;5&#125;  \quad x_&#123;1&#125; + x_&#123;2&#125; + \cdots + x_&#123;n&#125; $$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[ x_{1},x_{2},\ldots,x_{5}  \quad x_{1} +
-x_{2} + \cdots + x_{n} \]</span></p>
-<h2 id="重音符号">重音符号</h2>
-<p>常用命令如下：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$ \hat&#123;x&#125; $<br></code></pre></td></tr></table></figure>
-<p>$ $</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$ \bar&#123;x&#125; $<br></code></pre></td></tr></table></figure>
-<p>$ {x} $</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$ \tilde&#123;x&#125; $<br></code></pre></td></tr></table></figure>
-<p>$ $</p>
-<h2 id="矩阵">矩阵</h2>
-<p>其采用矩阵环境实现矩阵排列，常用的矩阵环境有matrix、bmatrix、vmatrix、pmatrix，其区别为在于外面的括号不同：</p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-684e48900e810dff360c23b4ffe99680_r.jpg" srcset="/img/loading.gif" lazyload
-alt="矩阵" />
-<figcaption aria-hidden="true">矩阵</figcaption>
-</figure>
-<p>列代码中，&amp;用于分隔列，</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\begin&#123;bmatrix&#125;<br>1 &amp; 2 &amp; \cdots \\<br>67 &amp; 95 &amp; \cdots \\<br>\vdots  &amp; \vdots &amp; \ddots \\<br>\end&#123;bmatrix&#125;$$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[\begin{bmatrix}
-1 &amp; 2 &amp; \cdots \\
-67 &amp; 95 &amp; \cdots \\
-\vdots  &amp; \vdots &amp; \ddots \\
-\end{bmatrix}\]</span></p>
-<h2 id="希腊字母">希腊字母</h2>
-<p>希腊字母无法直接通过美式键盘输入获得。在LaTeX中通过反斜杠，将读音首字母大写即可输入其大写形式，详见下表</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$$ \alpha^&#123;2&#125; + \beta = \Theta  $$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[ \alpha^{2} + \beta =
-\Theta  \]</span></p>
-<figure>
-<img
-src="https://fsq.oss-cn-hangzhou.aliyuncs.com/v2-da3e717cf670582fbfbdddee33073524_r.jpg" srcset="/img/loading.gif" lazyload
-alt="希腊字符" />
-<figcaption aria-hidden="true">希腊字符</figcaption>
-</figure>
-<h2 id="多行公式">多行公式</h2>
-<h2 id="公式组合">公式组合</h2>
-<p>通过cases环境实现公式的组合，&amp;分隔公式和条件，还可以通过→0位于lim的正下方而非默认在lim符号的右下方显示</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs text">$$D(x) = \begin&#123;cases&#125;<br>\lim\limits_&#123;x \to 0&#125; \frac&#123;a^x&#125;&#123;b+c&#125;, &amp; x&lt;3 \\<br>\pi, &amp; x=3 \\<br>\int_a^&#123;3b&#125;x_&#123;ij&#125;+e^2 \mathrm&#123;d&#125;x,&amp; x&gt;3 \\<br>\end&#123;cases&#125;$$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[D(x) = \begin{cases}
-\lim\limits_{x \to 0} \frac{a^x}{b+c}, &amp; x&lt;3 \\
-\pi, &amp; x=3 \\
-\int_a^{3b}x_{ij}+e^2 \mathrm{d}x,&amp; x&gt;3 \\
-\end{cases}\]</span></p>
-<h2 id="拆分单个公式">拆分单个公式</h2>
-<p>通过split环境实现公式拆分</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs text">$$\begin&#123;split&#125;<br>\cos 2x &amp;= \cos^2x - \sin^2x \\<br>&amp;=2\cos^2x-1<br>\end&#123;split&#125;$$<br></code></pre></td></tr></table></figure>
-<p><span class="math display">\[\begin{split}
-\cos 2x &amp;= \cos^2x - \sin^2x \\
-&amp;=2\cos^2x-1
-\end{split}\]</span></p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">$ Y \in R^&#123;\frac&#123;H&#125;&#123;2&#125;\times\frac&#123;W&#125;&#123;2&#125;\times C&#125;$<br></code></pre></td></tr></table></figure>
-<p>$ Y R^{C}$</p>
-<h2 id="transformer-常用公式">Transformer 常用公式</h2>
-<p><span class="math display">\[ Attention(Q,K,V) =
-Softmax(\frac{QK^T}{\sqrt{d_{head}}})V\]</span></p>
+              <h1 id="synchronized详解">synchronized详解</h1>
+<blockquote>
+<p>synchronized、volatile、Lock详解</p>
+<p><code>synchronized</code>、<code>volatile</code>和<code>lock</code>，其中<code>lock</code>是一个类，而其余两个则是Java关键字。</p>
+</blockquote>
+<h2 id="synchronized的简单介绍">1.synchronized的简单介绍</h2>
+<p><code>synchronized</code>是Java中的关键字，是一种<strong>同步锁</strong>。是一种重量级锁，因为在获得锁和释放锁的过程中性能消耗很大。</p>
+<p>synchronized的作用是保证在同一时刻，
+被修饰的代码块或方法只会有一个线程执行，以达到保证并发安全的效果。</p>
+<p>synchronized是Java中解决并发问题的一种最常用的方法，也是最简单的一种方法。</p>
+<h2 id="synchronized的作用">2.synchronized的作用</h2>
+<ol type="1">
+<li><strong>原子性</strong>：确保线程互斥地访问同步代码；</li>
+<li><strong>可见性</strong>：保证共享变量的修改能够及时可见，其实是通过Java内存模型中的“对一个变量unlock操作之前，必须要同步到主内存中；如果对一个变量进行lock操作，则将会清空工作内存中此变量的值，在执行引擎使用此变量前，需要重新从主内存中load操作或assign操作初始化变量值”
+来保证的；</li>
+<li><strong>有序性</strong>：有效解决重排序问题，即
+“一个unlock操作先行发生(happen-before)于后面对同一个锁的lock操作”；</li>
+</ol>
+<h2 id="synchronized的使用">3.synchronized的使用</h2>
+<h4 id="对象锁">对象锁</h4>
+<ul>
+<li>修饰实例方法：作用于当前<strong>实例</strong>加锁（对于普通同步方法，锁是当前的实例对象；）</li>
+<li>修饰静态方法：作用于当前<strong>类</strong>对象加锁（对于静态同步方法，锁是当前类的Class对象；）</li>
+<li>修饰代码块：指定加锁对象，对<strong>给定对象</strong>加锁（对于同步方法块，锁是Synchronized括号中的对象；）</li>
+</ul>
+<h2 id="代码示例">4.代码示例</h2>
+<ul>
+<li><p>修饰方法：在范围操作符之后，返回类型声明之前使用。每次只能有一个线程进入该方法，此时线程获得的是成员锁。</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><div class="code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">syncMethod</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-comment">//doSomething</span><br>&#125;	<br></code></pre></td></tr></table></figure></p></li>
+<li><p>修饰代码块：每次只能有一个线程进入该代码块，此时线程获得的是成员锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">synMethod</span><span class="hljs-params">(<span class="hljs-type">int</span> arg)</span>&#123;<br>    <span class="hljs-keyword">synchronized</span>(arg) &#123;<br>        <span class="hljs-comment">//doSomething</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>修饰对象：如果当前线程进入，那么其他线程在该类所有对象上的任何操作都不能进行，此时当前线程获得的是对象锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">SyncThread</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Runnable</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String args[])</span> &#123;<br>        <span class="hljs-type">SyncThread</span> <span class="hljs-variable">syncThread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SyncThread</span>();<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">therad1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(syncThread, <span class="hljs-string">&quot;therad1&quot;</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">therad2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(syncThread, <span class="hljs-string">&quot;therad2&quot;</span>);<br>        <span class="hljs-type">Thread</span> <span class="hljs-variable">therad3</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(syncThread, <span class="hljs-string">&quot;therad3&quot;</span>);<br>        therad1.start();<br>        therad2.start();<br>        therad3.start();<br>    &#125;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>) &#123;<br>            System.out.println(Thread.currentThread().getName());<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>修饰类：如果当前线程进入，那么其他线程在该类中所有操作不能进行，包括静态变量和静态方法，此时当前线程获得的是对象锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">syncClass</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">synchronized</span>(syncClass.class) &#123;<br>            <span class="hljs-comment">//doSomething</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="锁的升级">5.锁的升级</h2>
+<p>为了减少获得锁和释放锁的性能消耗，引入了偏向锁和轻量级锁，锁一共有4个状态，级别从低到高是<strong>无锁状态-&gt;偏向锁状态-&gt;轻量级锁(自旋锁)状态-&gt;重量级锁状态</strong>，随着竞争情况逐渐升级，锁只能升级不能降级。</p>
+<blockquote>
+<p>锁膨胀方向： 无锁 → 偏向锁 → 轻量级锁 → 重量级锁
+(此过程是不可逆的)</p>
+</blockquote>
+<p><img
+src="https://fsq.oss-cn-hangzhou.aliyuncs.com/image-20220513213702572.png" srcset="/img/loading.gif" lazyload /></p>
+<h2 id="synchronized的缺陷">6.synchronized的缺陷</h2>
+<ul>
+<li><code>效率低</code>：锁的释放情况少，只有代码执行完毕或者异常结束才会释放锁；试图获取锁的时候不能设定超时，不能中断一个正在使用锁的线程，相对而言，Lock可以中断和设置超时</li>
+<li><code>不够灵活</code>：加锁和释放的时机单一，每个锁仅有一个单一的条件(某个对象)，相对而言，读写锁更加灵活</li>
+<li><code>无法知道是否成功获得锁</code>，相对而言，Lock可以拿到状态，如果成功获取锁，....，如果获取失败，.....</li>
+</ul>
+<h2 id="synchronized是公平锁吗">7.synchronized是公平锁吗？</h2>
+<p>synchronized实际上是非公平的，新来的线程有可能立即获得监视器，而在等待区中等候已久的线程可能再次等待，这样有利于提高性能，但是也可能会导致饥饿现象。</p>
 
             </div>
             <hr>
@@ -355,7 +299,7 @@ Softmax(\frac{QK^T}{\sqrt{d_{head}}})V\]</span></p>
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/">工具类</a>
+                      <a class="hover-with-bg" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
                     
                   </div>
                 
@@ -363,7 +307,7 @@ Softmax(\frac{QK^T}{\sqrt{d_{head}}})V\]</span></p>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%85%AC%E5%BC%8F/">公式</a>
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
                     
                   </div>
                 
@@ -380,9 +324,9 @@ Softmax(\frac{QK^T}{\sqrt{d_{head}}})V\]</span></p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/05/06/PyramidTNT/">
+                      <a href="/2022/05/14/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">PyramidTNT</span>
+                        <span class="hidden-mobile">垃圾回收机制</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -390,8 +334,8 @@ Softmax(\frac{QK^T}{\sqrt{d_{head}}})V\]</span></p>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/04/26/cosFormer/">
-                        <span class="hidden-mobile">cosFormer</span>
+                      <a href="/2022/05/13/%E5%90%8C%E6%AD%A5%E9%94%81%E2%80%94volatile/">
+                        <span class="hidden-mobile">同步锁——volatile</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -592,48 +536,6 @@ Softmax(\frac{QK^T}{\sqrt{d_{head}}})V\]</span></p>
 
 
 
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          load: ['ui/lazy']
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" ></script>
-
-  
 
 
 
